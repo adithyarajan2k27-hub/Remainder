@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remainder App - Login</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#6a11cb,#2575fc);
+        }
+
+        .container{
+            background:white;
+            padding:40px;
+            width:350px;
+            border-radius:15px;
+            box-shadow:0 8px 25px rgba(0,0,0,0.2);
+            text-align:center;
+        }
+
+        .logo{
+            font-size:32px;
+            font-weight:bold;
+            color:#6a11cb;
+            margin-bottom:10px;
+        }
+
+        .tagline{
+            color:#666;
+            margin-bottom:25px;
+        }
+
+        .input-group{
+            margin-bottom:15px;
+        }
+
+        .input-group input{
+            width:100%;
+            padding:12px;
+            border:2px solid #ddd;
+            border-radius:8px;
+            outline:none;
+            transition:0.3s;
+        }
+
+        .input-group input:focus{
+            border-color:#6a11cb;
+        }
+
+        .login-btn{
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:8px;
+            background:#28a745;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .login-btn:hover{
+            background:#218838;
+        }
+
+        .links{
+            margin-top:15px;
+        }
+
+        .links a{
+            text-decoration:none;
+            color:#6a11cb;
+            font-size:14px;
+        }
+
+        .links a:hover{
+            text-decoration:underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">Remainder</div>
+        <p class="tagline">Never miss an important reminder</p>
+
+        <form>
+            <div class="input-group">
+                <input type="email" placeholder="Email Address" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" placeholder="Password" required>
+            </div>
+
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+        </form>
+
+        <div class="links">
+            <p><a href="#">Forgot Password?</a></p>
+            <br>
+            <p>Don't have an account? <a href="#">Sign Up</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
