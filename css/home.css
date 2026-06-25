@@ -1,0 +1,309 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(
+        135deg,
+        #ffe4f2,
+        #f3e8ff
+    );
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+.navbar{
+    width:90%;
+    margin:auto;
+    padding:25px 0;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:#7e22ce;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#555;
+    font-weight:500;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#a855f7;
+}
+
+.login-btn{
+    border:none;
+    background:#a855f7;
+    color:white;
+    padding:12px 25px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.login-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(168,85,247,.3);
+}
+
+/* HERO */
+
+.hero{
+    width:90%;
+    margin:auto;
+    min-height:80vh;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:50px;
+}
+
+.hero-text{
+    flex:1;
+}
+
+.hero-text h1{
+    font-size:65px;
+    line-height:1.1;
+    color:#5b21b6;
+}
+
+.hero-text p{
+    margin-top:20px;
+    font-size:18px;
+    color:#666;
+    max-width:550px;
+}
+
+.hero-buttons{
+    margin-top:35px;
+    display:flex;
+    gap:20px;
+}
+
+.primary-btn{
+    background:#c084fc;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    border-radius:40px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+.primary-btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 30px rgba(192,132,252,.4);
+}
+
+.secondary-btn{
+    background:white;
+    color:#9333ea;
+    border:none;
+    padding:15px 30px;
+    border-radius:40px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.secondary-btn:hover{
+    transform:translateY(-5px);
+}
+
+/* HERO IMAGE */
+
+.hero-image{
+    flex:1;
+    position:relative;
+    height:500px;
+}
+
+.floating-card{
+    position:absolute;
+    width:220px;
+    padding:25px;
+
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(15px);
+
+    border-radius:20px;
+    box-shadow:0 15px 30px rgba(0,0,0,.08);
+
+    animation:float 4s ease-in-out infinite;
+    transition:.3s;
+}
+
+.floating-card:hover{
+    transform:scale(1.08);
+}
+
+.card1{
+    top:40px;
+    left:40px;
+}
+
+.card2{
+    top:220px;
+    right:30px;
+    animation-delay:1s;
+}
+
+.card3{
+    bottom:20px;
+    left:100px;
+    animation-delay:2s;
+}
+
+.floating-card h3{
+    color:#9333ea;
+    margin-bottom:10px;
+}
+
+.floating-card p{
+    color:#666;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-20px);
+    }
+}
+
+/* STATS */
+
+.stats{
+    width:90%;
+    margin:40px auto;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.stat-card{
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    text-align:center;
+
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.stat-card:hover{
+    transform:translateY(-10px);
+}
+
+.stat-card h2{
+    color:#9333ea;
+    font-size:40px;
+}
+
+.stat-card p{
+    color:#666;
+}
+
+/* FEATURES */
+
+.features{
+    width:90%;
+    margin:100px auto;
+    text-align:center;
+}
+
+.features h2{
+    font-size:42px;
+    color:#5b21b6;
+    margin-bottom:50px;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.feature-card{
+    background:white;
+    padding:40px;
+    border-radius:25px;
+
+    transition:.4s;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.feature-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 35px rgba(168,85,247,.15);
+}
+
+.feature-card span{
+    font-size:50px;
+}
+
+.feature-card h3{
+    margin:20px 0;
+    color:#7e22ce;
+}
+
+.feature-card p{
+    color:#666;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .navbar{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding-top:40px;
+    }
+
+    .hero-text h1{
+        font-size:45px;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+    .hero-image{
+        width:100%;
+        height:450px;
+    }
+
+    .floating-card{
+        width:180px;
+    }
+}
