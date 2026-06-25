@@ -1,0 +1,151 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:linear-gradient(
+        135deg,
+        #7b2ff7,
+        #f107a3
+    );
+}
+
+/* Background Circles */
+
+.background::before,
+.background::after{
+    content:'';
+    position:absolute;
+    border-radius:50%;
+    filter:blur(60px);
+}
+
+.background::before{
+    width:300px;
+    height:300px;
+    background:#ffffff40;
+    top:-80px;
+    left:-80px;
+}
+
+.background::after{
+    width:350px;
+    height:350px;
+    background:#ff9de2;
+    bottom:-120px;
+    right:-120px;
+}
+
+/* Login Card */
+
+.login-container{
+    position:relative;
+    z-index:10;
+}
+
+.login-card{
+    width:380px;
+    padding:40px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 8px 32px rgba(0,0,0,0.2);
+    color:white;
+    text-align:center;
+}
+
+.login-card h1{
+    font-size:2.2rem;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    margin-bottom:30px;
+    color:#f5f5f5;
+}
+
+/* Inputs */
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group input{
+    width:100%;
+    padding:14px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:rgba(255,255,255,0.2);
+    color:white;
+    font-size:15px;
+}
+
+.input-group input::placeholder{
+    color:#f1f1f1;
+}
+
+/* Remember & Forgot */
+
+.options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    font-size:14px;
+}
+
+.options a{
+    color:white;
+    text-decoration:none;
+}
+
+.options a:hover{
+    text-decoration:underline;
+}
+
+/* Button */
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    color:#d60087;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 15px rgba(255,255,255,0.3);
+}
+
+/* Signup */
+
+.signup{
+    margin-top:20px;
+    font-size:14px;
+}
+
+.signup a{
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.signup a:hover{
+    text-decoration:underline;
+}
