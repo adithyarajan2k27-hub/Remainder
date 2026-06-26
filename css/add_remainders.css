@@ -1,0 +1,631 @@
+/* ==========================================
+   GOOGLE FONT
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ==========================================
+   ROOT COLORS
+========================================== */
+
+:root{
+
+    --pink:#ec4899;
+    --purple:#9333ea;
+
+    --glass:
+    rgba(255,255,255,.6);
+
+    --border:
+    rgba(255,255,255,.4);
+
+    --shadow:
+    0 15px 35px rgba(0,0,0,.12);
+
+    --text:#1f2937;
+}
+
+/* ==========================================
+   BODY
+========================================== */
+
+body{
+
+    min-height:100vh;
+
+    color:var(--text);
+
+    background:
+    linear-gradient(
+        -45deg,
+        #ffd6ec,
+        #fbcfe8,
+        #e9d5ff,
+        #dbeafe
+    );
+
+    background-size:
+    400% 400%;
+
+    animation:
+    gradientMove 15s ease infinite;
+
+    overflow-x:hidden;
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+@keyframes gradientMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+/* ==========================================
+   GLASSMORPHISM
+========================================== */
+
+.glass-card{
+
+    background:
+    rgba(255,255,255,.6);
+
+    backdrop-filter:
+    blur(20px);
+
+    -webkit-backdrop-filter:
+    blur(20px);
+
+    border:
+    1px solid rgba(255,255,255,.4);
+
+    border-radius:30px;
+
+    box-shadow:
+    var(--shadow);
+}
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.premium-navbar{
+
+    margin:15px;
+
+    padding:12px 20px;
+
+    border-radius:25px;
+
+    background:
+    rgba(255,255,255,.45);
+
+    backdrop-filter:
+    blur(20px);
+
+    border:
+    1px solid rgba(255,255,255,.4);
+
+    box-shadow:
+    var(--shadow);
+}
+
+.logo{
+
+    font-size:1.6rem;
+
+    font-weight:700;
+
+    color:var(--purple)!important;
+}
+
+.theme-btn{
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:white;
+
+    font-size:1.2rem;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.theme-btn:hover{
+
+    transform:
+    translateY(-3px);
+}
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.reminder-container{
+
+    max-width:850px;
+
+    margin:auto;
+
+    padding:40px;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.header-section{
+
+    text-align:center;
+
+    margin-bottom:35px;
+}
+
+.header-icon{
+
+    font-size:4rem;
+
+    margin-bottom:10px;
+}
+
+.header-section h1{
+
+    font-size:2.4rem;
+
+    font-weight:700;
+
+    color:var(--purple);
+}
+
+.header-section p{
+
+    color:#6b7280;
+
+    margin-top:10px;
+}
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+.form-label{
+
+    font-weight:600;
+
+    margin-bottom:10px;
+}
+
+.premium-input{
+
+    border:none;
+
+    border-radius:16px;
+
+    padding:14px 18px;
+
+    background:
+    rgba(255,255,255,.85);
+
+    transition:.3s;
+}
+
+.premium-input:focus{
+
+    border:none;
+
+    outline:none;
+
+    box-shadow:
+    0 0 0 4px rgba(147,51,234,.15);
+}
+
+/* ==========================================
+   PRIORITY CHIPS
+========================================== */
+
+.chip-group{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+}
+
+.chip{
+
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:50px;
+
+    background:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-weight:600;
+}
+
+.chip:hover{
+
+    transform:
+    translateY(-2px);
+}
+
+.chip.active{
+
+    background:
+    linear-gradient(
+        135deg,
+        #ec4899,
+        #9333ea
+    );
+
+    color:white;
+
+    box-shadow:
+    0 10px 25px rgba(147,51,234,.3);
+}
+
+/* ==========================================
+   CATEGORY
+========================================== */
+
+.category-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:15px;
+}
+
+.category-card{
+
+    border:none;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:1.4rem;
+}
+
+.category-card span{
+
+    font-size:.95rem;
+
+    font-weight:600;
+}
+
+.category-card:hover{
+
+    transform:
+    translateY(-4px);
+}
+
+.category-card.active{
+
+    background:
+    linear-gradient(
+        135deg,
+        #ec4899,
+        #9333ea
+    );
+
+    color:white;
+
+    box-shadow:
+    0 15px 30px rgba(147,51,234,.35);
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.button-group{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:30px;
+
+    flex-wrap:wrap;
+}
+
+.save-btn{
+
+    flex:1;
+
+    border:none;
+
+    padding:15px;
+
+    border-radius:18px;
+
+    color:white;
+
+    font-weight:600;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ec4899,
+        #9333ea
+    );
+
+    transition:.3s;
+}
+
+.save-btn:hover{
+
+    transform:
+    translateY(-3px);
+
+    box-shadow:
+    0 15px 30px rgba(147,51,234,.35);
+}
+
+.back-btn{
+
+    flex:1;
+
+    text-decoration:none;
+
+    text-align:center;
+
+    padding:15px;
+
+    border-radius:18px;
+
+    font-weight:600;
+
+    color:var(--purple);
+
+    background:white;
+
+    transition:.3s;
+}
+
+.back-btn:hover{
+
+    color:white;
+
+    background:var(--purple);
+}
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark{
+
+    background:
+    linear-gradient(
+        -45deg,
+        #0b0b14,
+        #131320,
+        #181825,
+        #0f172a
+    );
+
+    color:#f8fafc;
+}
+
+body.dark .glass-card{
+
+    background:
+    rgba(20,20,35,.75);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+}
+
+body.dark .premium-navbar{
+
+    background:
+    rgba(15,15,25,.8);
+}
+
+body.dark .theme-btn{
+
+    background:#242438;
+
+    color:white;
+}
+
+body.dark .premium-input{
+
+    background:#242438;
+
+    color:white;
+}
+
+body.dark .premium-input::placeholder{
+
+    color:#cbd5e1;
+}
+
+body.dark .header-section p{
+
+    color:#cbd5e1;
+}
+
+body.dark .chip{
+
+    background:#242438;
+
+    color:white;
+}
+
+body.dark .category-card{
+
+    background:#242438;
+
+    color:white;
+}
+
+body.dark .back-btn{
+
+    background:#242438;
+
+    color:white;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+    .reminder-container{
+
+        padding:25px;
+    }
+
+    .header-section h1{
+
+        font-size:2rem;
+    }
+
+    .category-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .button-group{
+
+        flex-direction:column;
+    }
+}
+
+@media(max-width:576px){
+
+    .premium-navbar{
+
+        margin:10px;
+    }
+
+    .header-icon{
+
+        font-size:3rem;
+    }
+
+    .header-section h1{
+
+        font-size:1.8rem;
+    }
+
+    .chip-group{
+
+        flex-direction:column;
+    }
+
+    .chip{
+
+        width:100%;
+    }
+}
+
+/* ==========================================
+   PREMIUM TOAST
+========================================== */
+
+.custom-toast{
+
+    position:fixed;
+
+    top:30px;
+
+    right:30px;
+
+    z-index:9999;
+
+    padding:16px 24px;
+
+    border-radius:18px;
+
+    color:white;
+
+    font-weight:600;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ec4899,
+        #9333ea
+    );
+
+    box-shadow:
+    0 15px 35px rgba(147,51,234,.35);
+
+    transform:
+    translateX(150%);
+
+    transition:.35s;
+}
+
+.custom-toast.show{
+
+    transform:
+    translateX(0);
+}
+
+@media(max-width:576px){
+
+    .custom-toast{
+
+        left:20px;
+        right:20px;
+
+        top:20px;
+
+        text-align:center;
+    }
+}
