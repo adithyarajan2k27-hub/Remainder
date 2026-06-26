@@ -1,13 +1,3 @@
-/* ==========================================
-   GOOGLE FONT
-========================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-/* ==========================================
-   RESET
-========================================== */
-
 *{
     margin:0;
     padding:0;
@@ -65,7 +55,7 @@ body{
 }
 
 /* ==========================================
-   BACKGROUND ANIMATION
+   ANIMATION
 ========================================== */
 
 @keyframes gradientMove{
@@ -90,7 +80,7 @@ body{
 .glass-card{
 
     background:
-    rgba(255,255,255,.60);
+    rgba(255,255,255,.6);
 
     backdrop-filter:
     blur(20px);
@@ -126,7 +116,7 @@ body{
     blur(20px);
 
     border:
-    1px solid rgba(255,255,255,.35);
+    1px solid rgba(255,255,255,.4);
 
     box-shadow:
     var(--shadow);
@@ -134,7 +124,7 @@ body{
 
 .logo{
 
-    font-size:1.7rem;
+    font-size:1.6rem;
 
     font-weight:700;
 
@@ -157,9 +147,9 @@ body{
 
     background:white;
 
-    cursor:pointer;
-
     font-size:1.2rem;
+
+    cursor:pointer;
 
     transition:.3s;
 }
@@ -171,10 +161,10 @@ body{
 }
 
 /* ==========================================
-   CONTAINER
+   MAIN CONTAINER
 ========================================== */
 
-.add-container{
+.edit-container{
 
     max-width:850px;
 
@@ -218,7 +208,7 @@ body{
 }
 
 /* ==========================================
-   LABELS
+   INPUTS
 ========================================== */
 
 .form-label{
@@ -227,10 +217,6 @@ body{
 
     margin-bottom:10px;
 }
-
-/* ==========================================
-   INPUTS
-========================================== */
 
 .premium-input{
 
@@ -281,9 +267,9 @@ body{
 
     cursor:pointer;
 
-    font-weight:600;
-
     transition:.3s;
+
+    font-weight:600;
 }
 
 .chip:hover{
@@ -294,8 +280,6 @@ body{
 
 .chip.active{
 
-    color:white;
-
     background:
     linear-gradient(
         135deg,
@@ -303,8 +287,10 @@ body{
         #9333ea
     );
 
+    color:white;
+
     box-shadow:
-    0 10px 25px rgba(147,51,234,.30);
+    0 10px 25px rgba(147,51,234,.3);
 }
 
 /* ==========================================
@@ -325,9 +311,9 @@ body{
 
     border:none;
 
-    border-radius:20px;
-
     background:white;
+
+    border-radius:20px;
 
     padding:20px;
 
@@ -363,8 +349,6 @@ body{
 
 .category-card.active{
 
-    color:white;
-
     background:
     linear-gradient(
         135deg,
@@ -372,12 +356,14 @@ body{
         #9333ea
     );
 
+    color:white;
+
     box-shadow:
     0 15px 30px rgba(147,51,234,.35);
 }
 
 /* ==========================================
-   BUTTON GROUP
+   BUTTONS
 ========================================== */
 
 .button-group{
@@ -390,10 +376,6 @@ body{
 
     flex-wrap:wrap;
 }
-
-/* ==========================================
-   SAVE BUTTON
-========================================== */
 
 .save-btn{
 
@@ -428,10 +410,6 @@ body{
     0 15px 30px rgba(147,51,234,.35);
 }
 
-/* ==========================================
-   BACK BUTTON
-========================================== */
-
 .back-btn{
 
     flex:1;
@@ -455,7 +433,85 @@ body{
 
 .back-btn:hover{
 
+    color:white;
+
     background:var(--purple);
+}
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark{
+
+    background:
+    linear-gradient(
+        -45deg,
+        #0b0b14,
+        #131320,
+        #181825,
+        #0f172a
+    );
+
+    color:#f8fafc;
+}
+
+body.dark .glass-card{
+
+    background:
+    rgba(20,20,35,.75);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+}
+
+body.dark .premium-navbar{
+
+    background:
+    rgba(15,15,25,.8);
+}
+
+body.dark .theme-btn{
+
+    background:#242438;
+
+    color:white;
+}
+
+body.dark .premium-input{
+
+    background:#242438;
+
+    color:white;
+}
+
+body.dark .premium-input::placeholder{
+
+    color:#cbd5e1;
+}
+
+body.dark .header-section p{
+
+    color:#cbd5e1;
+}
+
+body.dark .chip{
+
+    background:#242438;
+
+    color:white;
+}
+
+body.dark .category-card{
+
+    background:#242438;
+
+    color:white;
+}
+
+body.dark .back-btn{
+
+    background:#242438;
 
     color:white;
 }
@@ -505,90 +561,12 @@ body{
 }
 
 /* ==========================================
-   DARK MODE
-========================================== */
-
-body.dark{
-
-    background:
-    linear-gradient(
-        -45deg,
-        #0b0b14,
-        #131320,
-        #181825,
-        #0f172a
-    );
-
-    color:#f8fafc;
-}
-
-body.dark .glass-card{
-
-    background:
-    rgba(20,20,35,.78);
-
-    border:
-    1px solid rgba(255,255,255,.08);
-}
-
-body.dark .premium-navbar{
-
-    background:
-    rgba(15,15,25,.85);
-}
-
-body.dark .theme-btn{
-
-    background:#242438;
-
-    color:white;
-}
-
-body.dark .premium-input{
-
-    background:#242438;
-
-    color:white;
-}
-
-body.dark .premium-input::placeholder{
-
-    color:#cbd5e1;
-}
-
-body.dark .header-section p{
-
-    color:#cbd5e1;
-}
-
-body.dark .chip{
-
-    background:#242438;
-
-    color:white;
-}
-
-body.dark .category-card{
-
-    background:#242438;
-
-    color:white;
-}
-
-body.dark .back-btn{
-
-    background:#242438;
-
-    color:white;
-}
-
-/* ==========================================
    RESPONSIVE
 ========================================== */
 
 @media(max-width:768px){
 
-    .add-container{
+    .edit-container{
 
         padding:25px;
     }

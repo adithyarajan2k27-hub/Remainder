@@ -1,10 +1,12 @@
 // ==========================================
-// ADD REMINDER JS
+// EDIT REMINDER JS
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
     initializeTheme();
+
+    loadReminder();
 
     setupPrioritySelection();
 
@@ -12,28 +14,127 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setupFormSubmit();
 
-    setMinimumDate();
-
 });
 
 // ==========================================
-// MINIMUM DATE = TODAY
+// URL PARAM
 // ==========================================
 
-function setMinimumDate() {
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
 
-    const today =
-        new Date()
-        .toISOString()
-        .split("T")[0];
+const reminderId =
+    Number(
+        params.get("id")
+    );
+
+// ==========================================
+// LOAD REMINDER
+// ==========================================
+
+function loadReminder() {
+
+    const reminders =
+        JSON.parse(
+            localStorage.getItem(
+                "reminders"
+            )
+        ) || [];
+
+    const reminder =
+        reminders.find(
+            item =>
+            item.id === reminderId
+        );
+
+    if (!reminder) {
+
+        alert(
+            "Reminder not found!"
+        );
+
+        window.location.href =
+            "home.html";
+
+        return;
+    }
+
+    document.getElementById(
+        "title"
+    ).value =
+        reminder.title || "";
+
+    document.getElementById(
+        "description"
+    ).value =
+        reminder.description || "";
 
     document.getElementById(
         "date"
-    ).min = today;
+    ).value =
+        reminder.date || "";
+
+    document.getElementById(
+        "time"
+    ).value =
+        reminder.time || "";
+
+    document.getElementById(
+        "priority"
+    ).value =
+        reminder.priority || "";
+
+    document.getElementById(
+        "category"
+    ).value =
+        reminder.category || "";
+
+    // Activate saved priority
+
+    document
+        .querySelectorAll(
+            ".priority-chip"
+        )
+        .forEach(chip => {
+
+            if (
+                chip.dataset.value ===
+                reminder.priority
+            ) {
+
+                chip.classList.add(
+                    "active"
+                );
+            }
+
+        });
+
+    // Activate saved category
+
+    document
+        .querySelectorAll(
+            ".category-card"
+        )
+        .forEach(card => {
+
+            if (
+                card.dataset.value ===
+                reminder.category
+            ) {
+
+                card.classList.add(
+                    "active"
+                );
+            }
+
+        });
+
 }
 
 // ==========================================
-// PRIORITY SELECTION
+// PRIORITY
 // ==========================================
 
 function setupPrioritySelection() {
@@ -72,7 +173,7 @@ function setupPrioritySelection() {
 }
 
 // ==========================================
-// CATEGORY SELECTION
+// CATEGORY
 // ==========================================
 
 function setupCategorySelection() {
@@ -111,14 +212,14 @@ function setupCategorySelection() {
 }
 
 // ==========================================
-// FORM SUBMIT
+// UPDATE REMINDER
 // ==========================================
 
 function setupFormSubmit() {
 
     const form =
         document.getElementById(
-            "reminderForm"
+            "editReminderForm"
         );
 
     form.addEventListener(
@@ -166,7 +267,7 @@ function setupFormSubmit() {
             ) {
 
                 alert(
-                    "Please fill all required fields."
+                    "Please complete all fields."
                 );
 
                 return;
@@ -179,31 +280,34 @@ function setupFormSubmit() {
                     )
                 ) || [];
 
-            const reminder = {
+            const index =
+                reminders.findIndex(
+                    item =>
+                    item.id === reminderId
+                );
 
-                id: Date.now(),
+            if (
+                index === -1
+            ) {
+
+                alert(
+                    "Reminder not found."
+                );
+
+                return;
+            }
+
+            reminders[index] = {
+
+                ...reminders[index],
 
                 title,
-
                 description,
-
                 date,
-
                 time,
-
                 priority,
-
-                category,
-
-                completed: false,
-
-                createdAt:
-                    new Date().toISOString()
+                category
             };
-
-            reminders.push(
-                reminder
-            );
 
             localStorage.setItem(
                 "reminders",
@@ -213,7 +317,7 @@ function setupFormSubmit() {
             );
 
             showToast(
-                "Reminder Created 🎉"
+                "Reminder Updated 🎉"
             );
 
             setTimeout(
@@ -286,7 +390,7 @@ function showToast(message) {
 }
 
 // ==========================================
-// DARK MODE
+// THEME
 // ==========================================
 
 function initializeTheme() {

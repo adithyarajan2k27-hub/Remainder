@@ -1,0 +1,724 @@
+/* ==========================================
+   GOOGLE FONT
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========================================
+   RESET
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ==========================================
+   ROOT
+========================================== */
+
+:root{
+
+    --pink:#ec4899;
+    --purple:#9333ea;
+
+    --dark:#111827;
+
+    --glass:
+    rgba(255,255,255,.6);
+
+    --border:
+    rgba(255,255,255,.35);
+
+    --shadow:
+    0 15px 35px rgba(0,0,0,.12);
+
+    --text:#1f2937;
+}
+
+/* ==========================================
+   BODY
+========================================== */
+
+body{
+
+    min-height:100vh;
+
+    color:var(--text);
+
+    background:
+    linear-gradient(
+        -45deg,
+        #ffd6ec,
+        #fbcfe8,
+        #e9d5ff,
+        #dbeafe
+    );
+
+    background-size:
+    400% 400%;
+
+    animation:
+    bgMove 15s ease infinite;
+
+    overflow-x:hidden;
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+@keyframes bgMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.premium-navbar{
+
+    margin:15px;
+
+    padding:12px 20px;
+
+    border-radius:24px;
+
+    background:
+    rgba(255,255,255,.45);
+
+    backdrop-filter:
+    blur(20px);
+
+    border:
+    1px solid rgba(255,255,255,.35);
+
+    box-shadow:
+    var(--shadow);
+}
+
+.logo{
+
+    font-size:1.6rem;
+
+    font-weight:700;
+
+    color:var(--purple)!important;
+}
+
+/* ==========================================
+   THEME BUTTON
+========================================== */
+
+.theme-btn{
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:1.2rem;
+}
+
+.theme-btn:hover{
+
+    transform:
+    translateY(-3px);
+}
+
+/* ==========================================
+   GLASS CARD
+========================================== */
+
+.glass-card{
+
+    background:
+    rgba(255,255,255,.60);
+
+    backdrop-filter:
+    blur(20px);
+
+    border:
+    1px solid rgba(255,255,255,.35);
+
+    border-radius:28px;
+
+    box-shadow:
+    var(--shadow);
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.page-header{
+
+    padding:30px;
+
+    text-align:center;
+}
+
+.page-header h1{
+
+    font-weight:700;
+
+    color:var(--purple);
+}
+
+.page-header p{
+
+    margin-top:10px;
+
+    color:#6b7280;
+}
+
+/* ==========================================
+   STATS
+========================================== */
+
+.stats-card{
+
+    background:
+    linear-gradient(
+        135deg,
+        #ec4899,
+        #9333ea
+    );
+
+    color:white;
+
+    padding:25px;
+
+    border-radius:24px;
+
+    text-align:center;
+
+    box-shadow:
+    0 15px 35px rgba(147,51,234,.25);
+
+    transition:.3s;
+}
+
+.stats-card:hover{
+
+    transform:
+    translateY(-5px);
+}
+
+.stats-card h2{
+
+    font-size:2rem;
+
+    font-weight:700;
+}
+
+.stats-card p{
+
+    margin-top:5px;
+
+    margin-bottom:0;
+}
+
+/* ==========================================
+   SEARCH SECTION
+========================================== */
+
+.search-section{
+
+    padding:20px;
+}
+
+.search-section .form-control{
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:15px;
+}
+
+.search-section .input-group-text{
+
+    border:none;
+
+    background:white;
+}
+
+/* ==========================================
+   FILTERS
+========================================== */
+
+.filter-section{
+
+    padding:25px;
+}
+
+.form-label{
+
+    font-weight:600;
+}
+
+.form-select{
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:12px;
+}
+
+/* ==========================================
+   REMINDER CARD
+========================================== */
+
+.reminder-card{
+
+    background:
+    rgba(255,255,255,.65);
+
+    backdrop-filter:
+    blur(15px);
+
+    border:
+    1px solid rgba(255,255,255,.35);
+
+    border-radius:25px;
+
+    padding:22px;
+
+    box-shadow:
+    var(--shadow);
+
+    transition:.3s;
+
+    height:100%;
+}
+
+.reminder-card:hover{
+
+    transform:
+    translateY(-6px);
+}
+
+/* ==========================================
+   CARD HEADER
+========================================== */
+
+.card-header-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:15px;
+}
+
+.reminder-title{
+
+    font-size:1.15rem;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+}
+
+.reminder-description{
+
+    color:#6b7280;
+
+    margin-top:10px;
+}
+
+/* ==========================================
+   BADGES
+========================================== */
+
+.priority-badge{
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-size:.8rem;
+
+    font-weight:600;
+}
+
+.high{
+
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.medium{
+
+    background:#fef3c7;
+    color:#d97706;
+}
+
+.low{
+
+    background:#dcfce7;
+    color:#16a34a;
+}
+
+.completed-badge{
+
+    background:#22c55e;
+
+    color:white;
+
+    padding:7px 12px;
+
+    border-radius:999px;
+
+    font-size:.75rem;
+
+    font-weight:600;
+}
+
+.overdue-badge{
+
+    background:#ef4444;
+
+    color:white;
+
+    padding:7px 12px;
+
+    border-radius:999px;
+
+    font-size:.75rem;
+
+    font-weight:600;
+}
+
+/* ==========================================
+   META
+========================================== */
+
+.reminder-meta{
+
+    color:#6b7280;
+
+    font-size:.9rem;
+
+    margin-top:10px;
+}
+
+/* ==========================================
+   CATEGORY
+========================================== */
+
+.category-chip{
+
+    display:inline-block;
+
+    padding:8px 14px;
+
+    margin-top:12px;
+
+    border-radius:999px;
+
+    background:
+    rgba(147,51,234,.12);
+
+    color:var(--purple);
+
+    font-weight:600;
+
+    font-size:.85rem;
+}
+
+/* ==========================================
+   ACTIONS
+========================================== */
+
+.card-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:18px;
+
+    flex-wrap:wrap;
+}
+
+.action-btn{
+
+    border:none;
+
+    padding:10px 15px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:.9rem;
+
+    transition:.3s;
+}
+
+.complete-btn{
+
+    background:#22c55e;
+
+    color:white;
+}
+
+.edit-btn{
+
+    background:#9333ea;
+
+    color:white;
+}
+
+.delete-btn{
+
+    background:#ef4444;
+
+    color:white;
+}
+
+.action-btn:hover{
+
+    transform:
+    translateY(-2px);
+}
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.empty-state{
+
+    text-align:center;
+
+    padding:60px 20px;
+
+    color:#6b7280;
+}
+
+.empty-state i{
+
+    font-size:4rem;
+
+    margin-bottom:15px;
+
+    color:var(--purple);
+}
+
+/* ==========================================
+   FLOATING BUTTON
+========================================== */
+
+.floating-add{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-size:1.5rem;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ec4899,
+        #9333ea
+    );
+
+    box-shadow:
+    0 15px 35px rgba(147,51,234,.35);
+
+    z-index:999;
+
+    transition:.3s;
+}
+
+.floating-add:hover{
+
+    color:white;
+
+    transform:
+    scale(1.08);
+}
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark{
+
+    background:
+    linear-gradient(
+        -45deg,
+        #09090f,
+        #12121c,
+        #1a1a2e,
+        #111827
+    );
+
+    color:white;
+}
+
+body.dark .premium-navbar{
+
+    background:
+    rgba(15,15,25,.85);
+}
+
+body.dark .glass-card{
+
+    background:
+    rgba(18,18,30,.78);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+}
+
+body.dark .theme-btn{
+
+    background:#232336;
+
+    color:white;
+}
+
+body.dark .page-header p,
+body.dark .reminder-meta,
+body.dark .reminder-description{
+
+    color:#cbd5e1;
+}
+
+body.dark .form-control,
+body.dark .form-select{
+
+    background:#232336;
+
+    color:white;
+
+    border:none;
+}
+
+body.dark .input-group-text{
+
+    background:#232336;
+
+    color:white;
+
+    border:none;
+}
+
+body.dark .reminder-card{
+
+    background:#232336;
+}
+
+body.dark .category-chip{
+
+    background:
+    rgba(236,72,153,.2);
+
+    color:#f9a8d4;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+    .page-header{
+
+        padding:22px;
+    }
+
+    .page-header h1{
+
+        font-size:1.8rem;
+    }
+
+    .card-header-top{
+
+        flex-direction:column;
+    }
+
+    .floating-add{
+
+        width:58px;
+        height:58px;
+
+        right:20px;
+        bottom:20px;
+    }
+}
+
+@media(max-width:576px){
+
+    .premium-navbar{
+
+        margin:10px;
+    }
+
+    .stats-card{
+
+        padding:18px;
+    }
+
+    .stats-card h2{
+
+        font-size:1.6rem;
+    }
+
+    .card-actions{
+
+        flex-direction:column;
+    }
+
+    .action-btn{
+
+        width:100%;
+    }
+}

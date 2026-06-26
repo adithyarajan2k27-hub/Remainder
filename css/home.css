@@ -4,6 +4,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
+/* ==========================================
+   RESET
+========================================== */
+
 *{
     margin:0;
     padding:0;
@@ -14,25 +18,19 @@
 :root{
 
     --pink:#ec4899;
-    --pink-light:#fbcfe8;
-
     --purple:#9333ea;
-    --purple-light:#e9d5ff;
-
     --blue:#dbeafe;
 
     --text:#1f2937;
-    --white:#ffffff;
 
     --glass:
-    rgba(255,255,255,.55);
+    rgba(255,255,255,.60);
 
     --border:
-    rgba(255,255,255,.35);
+    rgba(255,255,255,.40);
 
     --shadow:
     0 15px 35px rgba(0,0,0,.12);
-
 }
 
 /* ==========================================
@@ -61,11 +59,10 @@ body{
 
     animation:
     gradientMove 15s ease infinite;
-
 }
 
 /* ==========================================
-   ANIMATED BACKGROUND
+   BACKGROUND ANIMATION
 ========================================== */
 
 @keyframes gradientMove{
@@ -87,15 +84,9 @@ body{
 
     position:fixed;
 
-    width:100%;
-    height:100%;
-
-    top:0;
-    left:0;
+    inset:0;
 
     z-index:-1;
-
-    pointer-events:none;
 }
 
 /* ==========================================
@@ -121,7 +112,7 @@ body{
     box-shadow:
     var(--shadow);
 
-    transition:.35s;
+    transition:.3s;
 }
 
 .glass-card:hover{
@@ -146,11 +137,11 @@ body{
     backdrop-filter:
     blur(20px);
 
-    box-shadow:
-    var(--shadow);
-
     border:
     1px solid rgba(255,255,255,.35);
+
+    box-shadow:
+    var(--shadow);
 }
 
 .logo{
@@ -200,9 +191,9 @@ body{
 
     padding:10px 18px;
 
-    border-radius:15px;
-
     background:white;
+
+    border-radius:15px;
 
     font-weight:600;
 
@@ -211,7 +202,7 @@ body{
 }
 
 /* ==========================================
-   ICON BUTTONS
+   BUTTONS
 ========================================== */
 
 .theme-btn,
@@ -230,9 +221,9 @@ body{
 
     cursor:pointer;
 
-    font-size:1.1rem;
-
     transition:.3s;
+
+    font-size:1.1rem;
 }
 
 .theme-btn:hover,
@@ -241,6 +232,19 @@ body{
 
     transform:
     translateY(-3px);
+}
+
+.navbar-toggler{
+
+    border:none;
+
+    background:white;
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:15px;
 }
 
 /* ==========================================
@@ -302,30 +306,49 @@ body{
     margin-top:8px;
 
     color:#6b7280;
+
+    margin-bottom:0;
 }
 
 /* ==========================================
-   REMINDERS
+   REMINDER SECTION
 ========================================== */
 
 .reminder-section{
 
     padding:25px;
 
-    min-height:520px;
+    min-height:600px;
 }
 
 .section-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
 
     margin-bottom:25px;
 }
 
 .section-header h3{
 
+    color:var(--purple);
+
     font-weight:700;
 
-    color:var(--purple);
+    margin:0;
 }
+
+.section-header small{
+
+    color:#6b7280;
+}
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
 
 .empty-state{
 
@@ -353,7 +376,9 @@ body{
     color:#6b7280;
 }
 
-/* Reminder Cards */
+/* ==========================================
+   REMINDER CARD
+========================================== */
 
 .reminder-card{
 
@@ -361,12 +386,12 @@ body{
 
     border-radius:20px;
 
-    padding:18px;
+    padding:20px;
 
     margin-bottom:15px;
 
     box-shadow:
-    0 8px 20px rgba(0,0,0,.06);
+    0 10px 20px rgba(0,0,0,.06);
 
     transition:.3s;
 }
@@ -377,30 +402,141 @@ body{
     translateY(-4px);
 }
 
+.task-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:15px;
+}
+
 .reminder-title{
 
     font-size:1.1rem;
 
     font-weight:600;
+
+    margin-bottom:8px;
 }
 
 .reminder-meta{
 
     color:#6b7280;
 
-    font-size:.9rem;
+    font-size:.92rem;
+
+    line-height:1.6;
+}
+
+.priority-badge{
+
+    padding:8px 14px;
+
+    border-radius:50px;
+
+    font-size:.8rem;
+
+    font-weight:600;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ec4899,
+        #9333ea
+    );
 }
 
 /* ==========================================
-   CALENDAR
+   TASK ACTIONS
+========================================== */
+
+.task-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:15px;
+}
+
+.complete-checkbox{
+
+    width:18px;
+
+    height:18px;
+
+    cursor:pointer;
+}
+
+.edit-btn{
+
+    border:none;
+
+    background:#e9d5ff;
+
+    color:#6b21a8;
+
+    padding:8px 14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.edit-btn:hover{
+
+    background:#d8b4fe;
+}
+
+.delete-btn{
+
+    border:none;
+
+    background:#ffe4e6;
+
+    color:#dc2626;
+
+    padding:8px 14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.delete-btn:hover{
+
+    background:#fecdd3;
+}
+
+/* ==========================================
+   CALENDAR CARD
 ========================================== */
 
 .calendar-card{
 
     padding:25px;
+
+    height:100%;
 }
 
 .calendar-top{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
 
     margin-bottom:20px;
 }
@@ -410,7 +546,13 @@ body{
     color:var(--purple);
 
     font-weight:700;
+
+    margin:0;
 }
+
+/* ==========================================
+   WEEKDAYS
+========================================== */
 
 .weekdays{
 
@@ -419,19 +561,18 @@ body{
     grid-template-columns:
     repeat(7,1fr);
 
-    gap:8px;
+    text-align:center;
 
     margin-bottom:12px;
-}
-
-.weekdays div{
-
-    text-align:center;
 
     font-weight:600;
 
     color:#6b7280;
 }
+
+/* ==========================================
+   CALENDAR GRID
+========================================== */
 
 #calendar{
 
@@ -445,45 +586,149 @@ body{
 
 .day{
 
-    min-height:50px;
+    aspect-ratio:1;
 
     display:flex;
 
-    align-items:center;
-
     justify-content:center;
 
-    background:white;
+    align-items:center;
 
     border-radius:14px;
 
-    font-weight:500;
+    background:white;
+
+    font-weight:600;
 
     transition:.3s;
+
+    cursor:pointer;
 }
 
 .day:hover{
 
-    transform:scale(1.05);
+    transform:translateY(-2px);
 }
+
+.blank{
+
+    aspect-ratio:1;
+}
+
+/* ==========================================
+   TODAY
+========================================== */
 
 .today{
 
     background:
     linear-gradient(
         135deg,
-        #ec4899,
-        #9333ea
+        #9333ea,
+        #ec4899
     ) !important;
 
-    color:white;
+    color:white !important;
 
     font-weight:700;
 }
 
-.blank{
+/* ==========================================
+   REMINDER DAY
+========================================== */
 
-    min-height:50px;
+.reminder-day{
+
+    border:
+    2px solid #ec4899;
+
+    background:
+    rgba(236,72,153,.12);
+}
+
+/* ==========================================
+   STREAK DAY
+========================================== */
+
+.streak-day{
+
+    background:
+    linear-gradient(
+        135deg,
+        #f59e0b,
+        #f97316
+    );
+
+    color:white;
+
+    position:relative;
+}
+
+.streak-day::after{
+
+    content:"🔥";
+
+    position:absolute;
+
+    bottom:2px;
+
+    right:4px;
+
+    font-size:10px;
+}
+
+/* ==========================================
+   CALENDAR LEGEND
+========================================== */
+
+.calendar-legend{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    margin-top:20px;
+}
+
+.legend-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:.9rem;
+
+    font-weight:500;
+}
+
+.legend{
+
+    width:14px;
+
+    height:14px;
+
+    border-radius:50%;
+}
+
+.today-dot{
+
+    background:#9333ea;
+}
+
+.reminder-dot{
+
+    background:#ec4899;
+}
+
+.streak-dot{
+
+    background:#f59e0b;
 }
 
 /* ==========================================
@@ -509,8 +754,41 @@ body{
     color:var(--pink);
 }
 
+.analytics-card p{
+
+    margin-bottom:10px;
+}
+
 /* ==========================================
-   FLOATING BUTTON
+   OVERDUE
+========================================== */
+
+.overdue{
+
+    color:#ef4444;
+
+    font-weight:700;
+
+    margin-top:10px;
+}
+
+/* ==========================================
+   COUNTDOWN
+========================================== */
+
+.countdown{
+
+    margin-top:10px;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    color:#9333ea;
+}
+
+/* ==========================================
+   FLOATING ADD BUTTON
 ========================================== */
 
 .floating-add{
@@ -518,23 +796,26 @@ body{
     position:fixed;
 
     right:30px;
+
     bottom:30px;
 
-    width:70px;
-    height:70px;
+    width:65px;
 
-    border-radius:50%;
+    height:65px;
 
     display:flex;
 
-    align-items:center;
     justify-content:center;
+
+    align-items:center;
 
     text-decoration:none;
 
-    font-size:1.8rem;
-
     color:white;
+
+    font-size:1.6rem;
+
+    border-radius:50%;
 
     background:
     linear-gradient(
@@ -544,50 +825,20 @@ body{
     );
 
     box-shadow:
-    0 15px 30px rgba(147,51,234,.4);
-
-    transition:.35s;
+    0 15px 35px rgba(147,51,234,.35);
 
     z-index:999;
+
+    transition:.3s;
 }
 
 .floating-add:hover{
 
-    transform:
-    rotate(90deg)
-    scale(1.1);
-
     color:white;
-}
 
-/* ==========================================
-   MOBILE MENU
-========================================== */
-
-.offcanvas{
-
-    backdrop-filter:
-    blur(20px);
-}
-
-.mobile-link{
-
-    display:block;
-
-    text-decoration:none;
-
-    color:#374151;
-
-    padding:14px;
-
-    margin-bottom:10px;
-
-    border-radius:14px;
-}
-
-.mobile-link:hover{
-
-    background:#f3e8ff;
+    transform:
+    scale(1.08)
+    translateY(-4px);
 }
 
 /* ==========================================
@@ -601,7 +852,42 @@ body{
     border-radius:18px;
 
     box-shadow:
-    0 10px 25px rgba(0,0,0,.08);
+    0 10px 25px rgba(0,0,0,.12);
+
+    padding:10px;
+}
+
+.dropdown-item{
+
+    border-radius:10px;
+
+    padding:10px 12px;
+}
+
+/* ==========================================
+   MOBILE LINKS
+========================================== */
+
+.mobile-link{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:#374151;
+
+    font-weight:500;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    margin-bottom:10px;
+}
+
+.mobile-link:hover{
+
+    background:#f3f4f6;
 }
 
 /* ==========================================
@@ -613,10 +899,10 @@ body.dark{
     background:
     linear-gradient(
         -45deg,
-        #0b0b14,
-        #131320,
-        #181825,
-        #0f172a
+        #09090f,
+        #12121c,
+        #1a1a2e,
+        #111827
     );
 
     color:#f8fafc;
@@ -625,7 +911,7 @@ body.dark{
 body.dark .glass-card{
 
     background:
-    rgba(20,20,35,.75);
+    rgba(18,18,30,.78);
 
     border:
     1px solid rgba(255,255,255,.08);
@@ -634,55 +920,43 @@ body.dark .glass-card{
 body.dark .premium-navbar{
 
     background:
-    rgba(15,15,25,.8);
+    rgba(15,15,25,.85);
+}
+
+body.dark .nav-link{
+
+    color:#e2e8f0 !important;
+}
+
+body.dark .nav-link.active{
+
+    color:#f9a8d4 !important;
 }
 
 body.dark .clock-card,
 body.dark .theme-btn,
 body.dark .notify-btn,
-body.dark .profile-btn{
+body.dark .profile-btn,
+body.dark .day,
+body.dark .reminder-card{
 
-    background:#242438;
+    background:#232336;
 
     color:white;
-}
-
-body.dark .nav-link{
-
-    color:#d4d4d8 !important;
-}
-
-body.dark .nav-link.active{
-
-    color:#d946ef !important;
 }
 
 body.dark .hero-card p,
 body.dark .stats-card p,
-body.dark .empty-state p,
-body.dark .weekdays div,
-body.dark .reminder-meta{
+body.dark .section-header small,
+body.dark .reminder-meta,
+body.dark .weekdays{
 
     color:#cbd5e1;
 }
 
-body.dark .day{
-
-    background:#242438;
-
-    color:white;
-}
-
-body.dark .reminder-card{
-
-    background:#242438;
-
-    color:white;
-}
-
 body.dark .dropdown-menu{
 
-    background:#242438;
+    background:#232336;
 }
 
 body.dark .dropdown-item{
@@ -705,16 +979,23 @@ body.dark .mobile-link:hover{
     background:#31314a;
 }
 
+body.dark .calendar-card h3,
+body.dark .section-header h3,
+body.dark .analytics-card h3{
+
+    color:#f9a8d4;
+}
+
+body.dark .countdown{
+
+    color:#f9a8d4;
+}
+
 /* ==========================================
    RESPONSIVE
 ========================================== */
 
 @media(max-width:992px){
-
-    .clock-card{
-
-        display:none;
-    }
 
     .hero-card{
 
@@ -723,6 +1004,16 @@ body.dark .mobile-link:hover{
         text-align:center;
 
         gap:20px;
+    }
+
+    .hero-icon{
+
+        font-size:3rem;
+    }
+
+    .reminder-section{
+
+        min-height:auto;
     }
 }
 
@@ -733,46 +1024,79 @@ body.dark .mobile-link:hover{
         margin:10px;
     }
 
+    .hero-card{
+
+        padding:25px;
+    }
+
     .hero-card h1{
 
         font-size:1.8rem;
     }
 
-    .weekdays{
+    .stats-card{
 
-        font-size:12px;
+        padding:20px;
     }
 
-    .day{
+    .calendar-card{
 
-        min-height:40px;
-
-        font-size:13px;
+        margin-top:10px;
     }
 
     .floating-add{
 
-        width:60px;
-        height:60px;
+        width:58px;
+        height:58px;
+
+        right:20px;
+        bottom:20px;
     }
 }
 
 @media(max-width:576px){
+
+    .nav-actions{
+
+        gap:8px;
+    }
+
+    .clock-card{
+
+        display:none;
+    }
+
+    .hero-card h1{
+
+        font-size:1.5rem;
+    }
 
     .stats-card h2{
 
         font-size:1.8rem;
     }
 
-    .hero-card{
+    .calendar-legend{
 
-        padding:25px;
+        flex-direction:column;
+
+        align-items:center;
+
+        gap:10px;
     }
 
-    .reminder-section,
-    .calendar-card,
-    .analytics-card{
+    .task-top{
 
-        padding:18px;
+        flex-direction:column;
+    }
+
+    .task-actions{
+
+        flex-wrap:wrap;
+    }
+
+    .day{
+
+        font-size:.85rem;
     }
 }
