@@ -5,156 +5,364 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remainder Dashboard</title>
 
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/home.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">
+<!-- ========================= -->
+<!-- NAVBAR -->
+<!-- ========================= -->
+
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+
+    <div class="container">
+
+        <a class="navbar-brand logo" href="#">
             💜 Remainder
-        </div>
+        </a>
 
-        <div class="header-right">
-            <div id="clock"></div>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#mobileMenu">
 
-            <button id="themeBtn">
-                🌙
-            </button>
+            <i class="bi bi-list"></i>
 
-            <div class="profile">
-                👤 Meera
+        </button>
+
+        <div class="collapse navbar-collapse">
+
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        All Reminders
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Calendar
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Analytics
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Settings
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="navbar-tools">
+
+                <div id="clock"></div>
+
+                <button id="themeBtn">
+                    🌙
+                </button>
+
+                <button class="notification-btn">
+                    <i class="bi bi-bell-fill"></i>
+                </button>
+
+                <div class="dropdown">
+
+                    <button class="profile-btn dropdown-toggle"
+                            data-bs-toggle="dropdown">
+
+                        <i class="bi bi-person-circle"></i>
+
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                My Profile
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Settings
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Logout
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
             </div>
-        </div>
-    </header>
 
-    <section class="welcome">
-        <h1>Good Morning 👋</h1>
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- ========================= -->
+<!-- MOBILE MENU -->
+<!-- ========================= -->
+
+<div class="offcanvas offcanvas-start"
+     tabindex="-1"
+     id="mobileMenu">
+
+    <div class="offcanvas-header">
+
+        <h5 class="offcanvas-title">
+            💜 Remainder
+        </h5>
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas">
+        </button>
+
+    </div>
+
+    <div class="offcanvas-body">
+
+        <a href="#" class="mobile-link">
+            Dashboard
+        </a>
+
+        <a href="#" class="mobile-link">
+            All Reminders
+        </a>
+
+        <a href="#" class="mobile-link">
+            Calendar
+        </a>
+
+        <a href="#" class="mobile-link">
+            Analytics
+        </a>
+
+        <a href="#" class="mobile-link">
+            Settings
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================= -->
+
+<div class="container py-4">
+
+    <!-- Welcome Card -->
+
+    <div class="welcome-card">
+
+        <h2 id="greeting">
+            Welcome Back 👋
+        </h2>
 
         <p>
-            You have 5 reminders scheduled today.
-            Stay productive and keep your streak alive!
+            Stay organized and never miss important moments.
         </p>
-    </section>
 
-    <section class="stats">
+    </div>
 
-        <div class="card">
-            <h2>12</h2>
-            <p>Today's Tasks</p>
-        </div>
+    <!-- Statistics -->
 
-        <div class="card">
-            <h2>8</h2>
-            <p>Completed</p>
-        </div>
+    <div class="row g-4 mt-2">
 
-        <div class="card">
-            <h2>4</h2>
-            <p>Upcoming</p>
-        </div>
+        <div class="col-lg-3 col-md-6">
 
-        <div class="card">
-            <h2>15 🔥</h2>
-            <p>Day Streak</p>
-        </div>
+            <div class="stats-card">
 
-    </section>
+                <h3 id="todayTasks">0</h3>
 
-    <section class="main-grid">
+                <p>Today's Tasks</p>
 
-        <div class="reminders">
-
-            <h2>Today's Reminders</h2>
-
-            <div class="task high">
-                <span>📌 Team Meeting</span>
-                <span>10:00 AM</span>
-            </div>
-
-            <div class="task medium">
-                <span>💊 Medicine</span>
-                <span>08:00 PM</span>
-            </div>
-
-            <div class="task low">
-                <span>🎂 Birthday Call</span>
-                <span>09:00 PM</span>
-            </div>
-
-            <div class="task high">
-                <span>📚 Study Session</span>
-                <span>07:00 PM</span>
             </div>
 
         </div>
 
-        <div class="side-panel">
+        <div class="col-lg-3 col-md-6">
 
-            <div class="countdown-card">
+            <div class="stats-card">
 
-                <h2>⏰ Next Event</h2>
+                <h3 id="upcomingTasks">0</h3>
 
-                <div id="countdown">
-                    Loading...
+                <p>Upcoming</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="stats-card">
+
+                <h3 id="completedTasks">0</h3>
+
+                <p>Completed</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="stats-card">
+
+                <h3>0🔥</h3>
+
+                <p>Streak</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Main Section -->
+
+    <div class="row mt-4 g-4">
+
+        <!-- Reminders -->
+
+        <div class="col-lg-7">
+
+            <div class="dashboard-card">
+
+                <div class="card-header-custom">
+
+                    <h4>
+                        Reminders
+                    </h4>
+
+                </div>
+
+                <div class="empty-state">
+
+                    <i class="bi bi-calendar-check"></i>
+
+                    <h5>
+                        No Reminders Yet
+                    </h5>
+
+                    <p>
+                        Create your first reminder using the + button.
+                    </p>
+
                 </div>
 
             </div>
 
-            <div class="events">
+        </div>
 
-                <h2>Upcoming Events</h2>
+        <!-- Calendar -->
 
-                <div class="event">
-                    📅 Project Submission
+        <div class="col-lg-5">
+
+            <div class="dashboard-card">
+
+                <div class="calendar-top">
+
+                    <h4 id="monthTitle">
+                        Month
+                    </h4>
+
                 </div>
 
-                <div class="event">
-                    📅 Doctor Appointment
+                <div class="calendar-header">
+
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+
                 </div>
 
-                <div class="event">
-                    📅 Family Function
+                <div id="calendar">
+
                 </div>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
 
-    <section class="calendar-card">
+    <!-- Analytics Placeholder -->
 
-        <h2>📅 June 2026</h2>
+    <div class="row mt-4">
 
-        <div class="calendar">
+        <div class="col-12">
 
-            <div>Sun</div>
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
+            <div class="dashboard-card">
 
-            <div class="day">21</div>
-            <div class="day">22</div>
-            <div class="day">23</div>
-            <div class="day">24</div>
-            <div class="day">25</div>
-            <div class="day active-day">26</div>
-            <div class="day">27</div>
+                <h4>
+                    Analytics
+                </h4>
+
+                <p>
+                    Productivity insights will appear here.
+                </p>
+
+            </div>
 
         </div>
 
-    </section>
+    </div>
 
-    <button class="add-btn">
-        +
-    </button>
+</div>
 
-    <script src="js/home.js"></script>
+<!-- ========================= -->
+<!-- FLOATING BUTTON -->
+<!-- ========================= -->
+
+<a href="add_remainders.html"
+   class="add-btn">
+
+    +
+
+</a>
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
+
+<script src="js/home.js"></script>
 
 </body>
 </html>
