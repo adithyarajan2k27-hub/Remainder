@@ -1,571 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Login to Remainder</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  :root{
-    --purple-900:#3b0764;
-    --purple-700:#6d28d9;
-    --purple-600:#7c3aed;
-    --purple-500:#9333ea;
-    --pink-500:#ec4899;
-    --pink-300:#f9a8d4;
-    --bg-pink:#fdf2fb;
-    --bg-pink2:#fce7f3;
-    --white:#ffffff;
-    --text-dark:#1e1330;
-    --text-grey:#6b6178;
-  }
 
-  *{margin:0;padding:0;box-sizing:border-box;}
+    <meta charset="UTF-8">
 
-  body{
-    font-family:'Poppins','Segoe UI',sans-serif;
-    min-height:100vh;
-    display:flex;
-    background: linear-gradient(135deg,#fdf2fb 0%, #fce7f3 40%, #f3e8ff 100%);
-    overflow-x:hidden;
-  }
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-  /* ---------- LEFT PANEL ---------- */
-  .left-panel{
-    flex:1.1;
-    position:relative;
-    padding:60px 70px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    overflow:hidden;
-    background:
-      radial-gradient(circle at 20% 20%, rgba(236,72,153,0.18), transparent 40%),
-      radial-gradient(circle at 80% 80%, rgba(124,58,237,0.18), transparent 45%);
-  }
+    <title>Login | Remainder</title>
 
-  .logo{
-    position:absolute;
-    top:50px;
-    left:70px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-size:1.4rem;
-    font-weight:800;
-    color:var(--purple-600);
-    z-index:5;
-  }
-  .logo .heart{
-    font-size:1.5rem;
-    animation:heartbeat 1.6s ease-in-out infinite;
-    display:inline-block;
-  }
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  @keyframes heartbeat{
-    0%,100%{transform:scale(1);}
-    15%{transform:scale(1.25);}
-    30%{transform:scale(0.95);}
-    45%{transform:scale(1.15);}
-    60%{transform:scale(1);}
-  }
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="css/login.css">
 
-  .welcome-tag{
-    color:var(--pink-500);
-    font-weight:700;
-    font-size:0.95rem;
-    margin-bottom:14px;
-    opacity:0;
-    animation:fadeUp .7s ease forwards .2s;
-    display:flex;
-    align-items:center;
-    gap:8px;
-  }
-  .welcome-tag .wave{
-    display:inline-block;
-    animation:wave 2.2s ease-in-out infinite;
-    transform-origin:70% 70%;
-  }
-  @keyframes wave{
-    0%,60%,100%{transform:rotate(0deg);}
-    10%{transform:rotate(14deg);}
-    20%{transform:rotate(-8deg);}
-    30%{transform:rotate(14deg);}
-    40%{transform:rotate(-4deg);}
-    50%{transform:rotate(10deg);}
-  }
-
-  .headline{
-    font-size:3.4rem;
-    font-weight:800;
-    line-height:1.12;
-    color:var(--text-dark);
-    margin-bottom:18px;
-    opacity:0;
-    animation:fadeUp .7s ease forwards .35s;
-  }
-  .headline .grad{
-    background:linear-gradient(90deg,var(--purple-600),var(--pink-500));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-  }
-
-  .subtext{
-    color:var(--text-grey);
-    font-size:1.05rem;
-    line-height:1.6;
-    max-width:430px;
-    margin-bottom:46px;
-    opacity:0;
-    animation:fadeUp .7s ease forwards .5s;
-  }
-  .subtext b{color:var(--purple-600);}
-
-  @keyframes fadeUp{
-    from{opacity:0; transform:translateY(18px);}
-    to{opacity:1; transform:translateY(0);}
-  }
-
-  /* floating decorative elements */
-  .floaters{position:absolute; inset:0; pointer-events:none;}
-  .float-card{
-    position:absolute;
-    background:var(--white);
-    border-radius:16px;
-    box-shadow:0 12px 30px rgba(124,58,237,0.15);
-    padding:14px 18px;
-    font-weight:600;
-    color:var(--purple-600);
-    font-size:0.9rem;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    opacity:0;
-    animation:popIn .6s ease forwards, floaty 6s ease-in-out infinite;
-  }
-
-  @keyframes popIn{
-    to{opacity:1;}
-  }
-  @keyframes floaty{
-    0%,100%{transform:translateY(0px) rotate(0deg);}
-    50%{transform:translateY(-14px) rotate(2deg);}
-  }
-
-  .fc1{top:14%; left:8%; animation-delay:.9s, 0s;}
-  .fc2{top:62%; left:4%; animation-delay:1.1s, 1.2s;}
-  .fc3{top:78%; left:48%; animation-delay:1.3s, 2.4s;}
-  .fc4{top:8%; left:55%; animation-delay:1.0s, .6s;}
-
-  .blob{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(10px);
-    opacity:.5;
-    animation:drift 12s ease-in-out infinite;
-  }
-  .blob1{width:160px;height:160px; background:var(--pink-300); top:-40px; left:-40px; animation-delay:0s;}
-  .blob2{width:120px;height:120px; background:var(--purple-500); bottom:0; right:10%; opacity:.25; animation-delay:2s;}
-
-  @keyframes drift{
-    0%,100%{transform:translate(0,0) scale(1);}
-    50%{transform:translate(20px,-20px) scale(1.08);}
-  }
-
-  .footer-note{
-    margin-top:6px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    background:rgba(255,255,255,0.6);
-    backdrop-filter:blur(6px);
-    border:1px solid rgba(124,58,237,0.15);
-    border-radius:14px;
-    padding:14px 18px;
-    max-width:380px;
-    opacity:0;
-    animation:fadeUp .7s ease forwards .65s;
-  }
-  .footer-note .lock{font-size:1.3rem;}
-  .footer-note .ft-title{font-weight:700; color:var(--text-dark); font-size:0.9rem;}
-  .footer-note .ft-sub{font-size:0.78rem; color:var(--text-grey);}
-
-  /* ---------- RIGHT PANEL ---------- */
-  .right-panel{
-    flex:1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:40px;
-    position:relative;
-  }
-
-  .login-card{
-    width:100%;
-    max-width:430px;
-    background:var(--white);
-    border-radius:26px;
-    padding:48px 42px 40px;
-    box-shadow:0 25px 60px rgba(124,58,237,0.18), 0 4px 12px rgba(0,0,0,0.04);
-    position:relative;
-    opacity:0;
-    transform:translateY(24px) scale(0.97);
-    animation:cardIn .7s cubic-bezier(.2,.8,.2,1) forwards .15s;
-  }
-
-  @keyframes cardIn{
-    to{opacity:1; transform:translateY(0) scale(1);}
-  }
-
-  .login-card::before{
-    content:'';
-    position:absolute;
-    inset:-2px;
-    border-radius:28px;
-    background:linear-gradient(135deg,var(--purple-500),var(--pink-500));
-    z-index:-1;
-    opacity:0;
-    filter:blur(18px);
-    transition:opacity .4s ease;
-  }
-  .login-card:hover::before{opacity:.35;}
-
-  .card-title{
-    font-size:1.7rem;
-    font-weight:800;
-    color:var(--text-dark);
-    text-align:center;
-    margin-bottom:6px;
-  }
-  .card-title span{
-    background:linear-gradient(90deg,var(--purple-600),var(--pink-500));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-  }
-  .card-sub{
-    text-align:center;
-    color:var(--text-grey);
-    font-size:0.92rem;
-    margin-bottom:30px;
-  }
-
-  .field{
-    margin-bottom:20px;
-    position:relative;
-  }
-  .field label{
-    display:block;
-    font-size:0.85rem;
-    font-weight:600;
-    color:var(--text-dark);
-    margin-bottom:7px;
-  }
-  .input-wrap{
-    position:relative;
-    display:flex;
-    align-items:center;
-    border:1.6px solid #e9d8f5;
-    border-radius:12px;
-    padding:0 14px;
-    transition:border-color .25s ease, box-shadow .25s ease, transform .15s ease;
-    background:#fbf8ff;
-  }
-  .input-wrap .icon{
-    font-size:1.05rem;
-    margin-right:10px;
-    opacity:0.7;
-    transition:transform .3s ease;
-  }
-  .input-wrap input{
-    border:none;
-    outline:none;
-    background:transparent;
-    flex:1;
-    padding:13px 0;
-    font-size:0.95rem;
-    color:var(--text-dark);
-    font-family:inherit;
-  }
-  .input-wrap input::placeholder{color:#b4a6c4;}
-
-  .input-wrap:focus-within{
-    border-color:var(--purple-500);
-    box-shadow:0 0 0 4px rgba(147,51,234,0.12);
-    transform:translateY(-2px);
-    background:#fff;
-  }
-  .input-wrap:focus-within .icon{transform:scale(1.15) rotate(-6deg);}
-
-  .toggle-pass{
-    cursor:pointer;
-    opacity:0.6;
-    font-size:1rem;
-    user-select:none;
-    transition:opacity .2s;
-  }
-  .toggle-pass:hover{opacity:1;}
-
-  .row-between{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:26px;
-    font-size:0.86rem;
-  }
-  .remember{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    color:var(--text-grey);
-    cursor:pointer;
-  }
-  .remember input{
-    width:17px;height:17px;
-    accent-color:var(--purple-600);
-    cursor:pointer;
-  }
-  .forgot{
-    color:var(--purple-600);
-    font-weight:600;
-    text-decoration:none;
-    position:relative;
-  }
-  .forgot::after{
-    content:'';
-    position:absolute;
-    left:0; bottom:-3px;
-    width:0%; height:1.5px;
-    background:var(--purple-600);
-    transition:width .3s ease;
-  }
-  .forgot:hover::after{width:100%;}
-
-  .btn-login{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:13px;
-    background:linear-gradient(90deg,var(--purple-600),var(--pink-500));
-    background-size:200% 100%;
-    background-position:0% 0%;
-    color:#fff;
-    font-size:1rem;
-    font-weight:700;
-    cursor:pointer;
-    position:relative;
-    overflow:hidden;
-    transition:background-position .5s ease, transform .15s ease, box-shadow .3s ease;
-    box-shadow:0 10px 25px rgba(124,58,237,0.35);
-  }
-  .btn-login:hover{
-    background-position:100% 0%;
-    transform:translateY(-2px);
-    box-shadow:0 14px 30px rgba(236,72,153,0.4);
-  }
-  .btn-login:active{transform:translateY(0px) scale(0.98);}
-
-  .btn-login .ripple{
-    position:absolute;
-    border-radius:50%;
-    background:rgba(255,255,255,0.5);
-    transform:scale(0);
-    animation:rippleAnim .6s ease-out;
-    pointer-events:none;
-  }
-  @keyframes rippleAnim{
-    to{transform:scale(4); opacity:0;}
-  }
-
-  .divider{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin:26px 0;
-    color:#b4a6c4;
-    font-size:0.82rem;
-  }
-  .divider::before,.divider::after{
-    content:'';
-    flex:1;
-    height:1px;
-    background:#ecdff5;
-  }
-
-  .btn-google{
-    width:100%;
-    padding:13px;
-    border:1.6px solid #e9d8f5;
-    border-radius:13px;
-    background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    font-weight:600;
-    font-size:0.92rem;
-    color:var(--text-dark);
-    cursor:pointer;
-    transition:all .25s ease;
-  }
-  .btn-google:hover{
-    border-color:var(--purple-500);
-    box-shadow:0 8px 20px rgba(124,58,237,0.12);
-    transform:translateY(-2px);
-  }
-
-  .signup-text{
-    text-align:center;
-    margin-top:24px;
-    font-size:0.9rem;
-    color:var(--text-grey);
-  }
-  .signup-text a{
-    color:var(--pink-500);
-    font-weight:700;
-    text-decoration:none;
-  }
-  .signup-text a:hover{text-decoration:underline;}
-
-  .brand-footer{
-    text-align:center;
-    margin-top:22px;
-    font-size:0.8rem;
-    color:#c9b8da;
-  }
-  .brand-footer .h{color:var(--purple-500); font-weight:700;}
-
-  /* shake animation for error feedback */
-  @keyframes shake{
-    0%,100%{transform:translateX(0);}
-    20%{transform:translateX(-8px);}
-    40%{transform:translateX(8px);}
-    60%{transform:translateX(-6px);}
-    80%{transform:translateX(6px);}
-  }
-  .shake{animation:shake .4s ease;}
-
-  @media (max-width:900px){
-    .left-panel{display:none;}
-    .right-panel{flex:1;}
-  }
-</style>
 </head>
+
 <body>
 
-  <!-- LEFT PANEL -->
-  <div class="left-panel">
-    <div class="logo"><span class="heart">💜</span> Remainder</div>
+    <div class="login-wrapper">
 
-    <div class="floaters">
-      <div class="blob blob1"></div>
-      <div class="blob blob2"></div>
-      <div class="float-card fc1">🔔 Reminder Set</div>
-      <div class="float-card fc2">✅ Task Completed</div>
-      <div class="float-card fc3">📅 25</div>
-      <div class="float-card fc4">💜 Don't forget to smile</div>
+        <!-- =========================
+             LEFT PANEL
+        ========================== -->
+
+        <div class="left-panel">
+
+            <div class="brand">
+
+                <h2>
+
+                    💜 Remainder
+
+                </h2>
+
+            </div>
+
+            <div class="hero-content">
+
+                <span class="welcome-text">
+
+                    Welcome Back! 👋
+
+                </span>
+
+                <h1>
+
+                    Let's Get <br>
+
+                    Things
+
+                    <span>
+
+                        Done
+
+                    </span>
+
+                </h1>
+
+                <p>
+
+                    Your notes, reminders and tasks —
+                    all in one beautiful place. 💜
+
+                </p>
+
+            </div>
+
+            <!-- Floating Cards -->
+
+            <div class="floating-elements">
+
+                <div class="floating-card bell-card">
+
+                    🔔
+
+                </div>
+
+                <div class="floating-card calendar-card">
+
+                    📅
+
+                    <span>
+
+                        25
+
+                    </span>
+
+                </div>
+
+                <div class="floating-card note-card">
+
+                    Don't forget
+                    to smile 💜
+
+                </div>
+
+                <div class="checklist-card">
+
+                    <div class="check-item">
+
+                        <i class="bi bi-check-square-fill"></i>
+
+                        <div class="line"></div>
+
+                    </div>
+
+                    <div class="check-item">
+
+                        <i class="bi bi-check-square-fill"></i>
+
+                        <div class="line"></div>
+
+                    </div>
+
+                    <div class="check-item">
+
+                        <i class="bi bi-check-square-fill"></i>
+
+                        <div class="line"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="heart-icon">
+
+                    💜
+
+                </div>
+
+            </div>
+
+            <!-- Security Card -->
+
+            <div class="security-card">
+
+                <div class="security-icon">
+
+                    🔒
+
+                </div>
+
+                <div>
+
+                    <h4>
+
+                        Your data is safe with us
+
+                    </h4>
+
+                    <p>
+
+                        We never share your information.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             RIGHT PANEL
+        ========================== -->
+
+        <div class="right-panel">
+
+            <div class="login-card">
+
+                <div class="login-header">
+
+                    <h1>
+
+                        Login to
+
+                        <span>
+
+                            Remainder
+
+                        </span>
+
+                    </h1>
+
+                    <p>
+
+                        Glad to see you again! 🙌
+
+                    </p>
+
+                </div>
+
+                <!-- FORM -->
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Email or Username
+
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="bi bi-person"></i>
+
+                            <input type="text"
+                                   id="email"
+                                   placeholder="Enter your email or username"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Password
+
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="bi bi-lock"></i>
+
+                            <input type="password"
+                                   id="password"
+                                   placeholder="Enter your password"
+                                   required>
+
+                            <button type="button"
+                                    id="togglePassword">
+
+                                <i class="bi bi-eye"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="options-row">
+
+                        <label class="remember">
+
+                            <input type="checkbox"
+                                   id="rememberMe">
+
+                            Remember Me
+
+                        </label>
+
+                        <a href="#">
+
+                            Forgot Password?
+
+                        </a>
+
+                    </div>
+
+                    <button type="submit"
+                            class="login-btn">
+
+                        Login
+
+                    </button>
+
+                </form>
+
+                <!-- DIVIDER -->
+
+                <div class="divider">
+
+                    <span>
+
+                        OR
+
+                    </span>
+
+                </div>
+
+                <!-- GOOGLE -->
+
+                <button class="google-btn">
+
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+                         alt="Google">
+
+                    Continue with Google
+
+                </button>
+
+                <!-- REGISTER -->
+
+                <div class="signup-link">
+
+                    Don't have an account?
+
+                    <a href="register.html">
+
+                        Sign Up
+
+                    </a>
+
+                </div>
+
+                <!-- FOOTER -->
+
+                <div class="login-footer">
+
+                    <h4>
+
+                        💜 Remainder
+
+                    </h4>
+
+                    <p>
+
+                        Stay organized.
+                        Stay productive.
+                        Stay you. 💜
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="welcome-tag"><span class="wave">👋</span> Welcome Back!</div>
-    <h1 class="headline">Let's Get<br>Things <span class="grad">Done</span></h1>
-    <p class="subtext">Your notes, reminders and tasks — all in one <b>beautiful</b> place. Pick up right where you left off and keep your streak alive. 💜</p>
-
-    <div class="footer-note">
-      <span class="lock">🔒</span>
-      <div>
-        <div class="ft-title">Your data is safe with us</div>
-        <div class="ft-sub">We never share your information.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- RIGHT PANEL -->
-  <div class="right-panel">
-    <form class="login-card" id="loginForm">
-      <h2 class="card-title">Login to <span>Remainder</span></h2>
-      <p class="card-sub">Glad to see you again! 🙌</p>
-
-      <div class="field">
-        <label for="email">Email or Username</label>
-        <div class="input-wrap">
-          <span class="icon">👤</span>
-          <input type="text" id="email" placeholder="Enter your email or username" required>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="pass">Password</label>
-        <div class="input-wrap">
-          <span class="icon">🔒</span>
-          <input type="password" id="pass" placeholder="Enter your password" required>
-          <span class="toggle-pass" id="togglePass">👁️</span>
-        </div>
-      </div>
-
-      <div class="row-between">
-        <label class="remember"><input type="checkbox" checked> Remember me</label>
-        <a href="#" class="forgot">Forgot Password?</a>
-      </div>
-
-      <button type="submit" class="btn-login" id="loginBtn">Login</button>
-
-      <div class="divider">or</div>
-
-      <button type="button" class="btn-google">
-        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.6 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.2 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 16 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.2 29.6 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.5 0 10.4-2.1 14.1-5.5l-6.5-5.5C29.6 34.9 26.9 36 24 36c-5.3 0-9.7-3.4-11.3-8.1l-6.6 5.1C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1.1 3.1-3.2 5.6-6 7.1l6.5 5.5C39.6 37.6 44 31.6 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
-        Continue with Google
-      </button>
-
-      <p class="signup-text">Don't have an account? <a href="#">Sign up</a></p>
-      <p class="brand-footer"><span class="h">💜 Remainder</span><br>Stay organized. Stay productive. Stay you. 💜</p>
-    </form>
-  </div>
-
-<script>
-  // password show/hide
-  const toggle = document.getElementById('togglePass');
-  const passInput = document.getElementById('pass');
-  toggle.addEventListener('click', ()=>{
-    if(passInput.type === 'password'){
-      passInput.type='text'; toggle.textContent='🙈';
-    } else {
-      passInput.type='password'; toggle.textContent='👁️';
-    }
-  });
-
-  // ripple effect on button click
-  const btn = document.getElementById('loginBtn');
-  btn.addEventListener('click', function(e){
-    const circle = document.createElement('span');
-    circle.classList.add('ripple');
-    const rect = btn.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    circle.style.width = circle.style.height = size+'px';
-    circle.style.left = (e.clientX - rect.left - size/2)+'px';
-    circle.style.top = (e.clientY - rect.top - size/2)+'px';
-    btn.appendChild(circle);
-    setTimeout(()=>circle.remove(), 600);
-  });
-
-  // simple validation shake + redirect to home.html as placeholder
-  const form = document.getElementById('loginForm');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    const email = document.getElementById('email').value.trim();
-    const pass = passInput.value.trim();
-    if(!email || !pass){
-      form.querySelector('.login-card') ;
-      document.querySelector('.login-card').classList.add('shake');
-      setTimeout(()=>document.querySelector('.login-card').classList.remove('shake'), 400);
-      return;
-    }
-    btn.textContent = 'Logging in...';
-    setTimeout(()=>{
-      // Replace with real auth logic / route to home.html
-      window.location.href = 'home.html';
-    }, 900);
-  });
-</script>
+    <script src="js/login.js"></script>
 
 </body>
+
 </html>
