@@ -1,0 +1,761 @@
+/* ==========================================
+   GOOGLE FONT
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========================================
+   RESET
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ==========================================
+   ROOT
+========================================== */
+
+:root{
+
+    --pink:#ec4899;
+    --purple:#9333ea;
+
+    --glass:
+    rgba(255,255,255,.60);
+
+    --border:
+    rgba(255,255,255,.35);
+
+    --shadow:
+    0 15px 35px rgba(0,0,0,.12);
+
+    --text:#1f2937;
+}
+
+/* ==========================================
+   BODY
+========================================== */
+
+body{
+
+    min-height:100vh;
+
+    color:var(--text);
+
+    background:
+    linear-gradient(
+        -45deg,
+        #ffd6ec,
+        #fbcfe8,
+        #e9d5ff,
+        #dbeafe
+    );
+
+    background-size:400% 400%;
+
+    animation:bgMove 15s ease infinite;
+
+    overflow-x:hidden;
+}
+
+@keyframes bgMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.premium-navbar{
+
+    margin:15px;
+
+    padding:12px 20px;
+
+    border-radius:25px;
+
+    background:
+    rgba(255,255,255,.45);
+
+    backdrop-filter:blur(20px);
+
+    border:
+    1px solid rgba(255,255,255,.35);
+
+    box-shadow:var(--shadow);
+}
+
+.logo{
+
+    color:var(--purple)!important;
+
+    font-size:1.6rem;
+
+    font-weight:700;
+}
+
+.nav-btn,
+.theme-btn{
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-decoration:none;
+
+    background:white;
+
+    color:var(--purple);
+
+    font-size:1.1rem;
+
+    transition:.3s;
+}
+
+.nav-btn:hover,
+.theme-btn:hover{
+
+    transform:translateY(-3px);
+
+    color:var(--purple);
+}
+
+/* ==========================================
+   GLASS CARD
+========================================== */
+
+.glass-card{
+
+    background:
+    rgba(255,255,255,.60);
+
+    backdrop-filter:blur(20px);
+
+    border:
+    1px solid rgba(255,255,255,.35);
+
+    border-radius:28px;
+
+    box-shadow:var(--shadow);
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.header-card{
+
+    padding:25px 30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.header-card h1{
+
+    color:var(--purple);
+
+    font-weight:700;
+}
+
+.header-card p{
+
+    margin-top:8px;
+
+    color:#6b7280;
+}
+
+.today-btn{
+
+    border:none;
+
+    padding:12px 24px;
+
+    border-radius:15px;
+
+    color:white;
+
+    font-weight:600;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--pink),
+        var(--purple)
+    );
+
+    transition:.3s;
+}
+
+.today-btn:hover{
+
+    transform:translateY(-3px);
+}
+
+/* ==========================================
+   CALENDAR CARD
+========================================== */
+
+.calendar-card{
+
+    padding:25px;
+}
+
+/* ==========================================
+   MONTH HEADER
+========================================== */
+
+.calendar-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.calendar-header h2{
+
+    font-weight:700;
+
+    color:var(--purple);
+}
+
+.month-btn{
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:white;
+
+    color:var(--purple);
+
+    transition:.3s;
+}
+
+.month-btn:hover{
+
+    transform:translateY(-3px);
+}
+
+/* ==========================================
+   WEEKDAYS
+========================================== */
+
+.weekdays{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    margin-bottom:12px;
+
+    text-align:center;
+
+    font-weight:700;
+
+    color:var(--purple);
+}
+
+/* ==========================================
+   CALENDAR GRID
+========================================== */
+
+#calendarGrid{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:10px;
+}
+
+/* ==========================================
+   DATE CELL
+========================================== */
+
+.calendar-day{
+
+    min-height:95px;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.calendar-day:hover{
+
+    transform:translateY(-4px);
+}
+
+.day-number{
+
+    font-weight:600;
+}
+
+/* ==========================================
+   SPECIAL DAYS
+========================================== */
+
+.today{
+
+    border:3px solid var(--purple);
+}
+
+.selected{
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--pink),
+        var(--purple)
+    );
+
+    color:white;
+}
+
+.other-month{
+
+    opacity:.4;
+}
+
+/* ==========================================
+   INDICATORS
+========================================== */
+
+.indicators{
+
+    display:flex;
+
+    gap:5px;
+
+    flex-wrap:wrap;
+
+    margin-top:8px;
+}
+
+.dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+}
+
+.dot-reminder{
+
+    background:#9333ea;
+}
+
+.dot-completed{
+
+    background:#22c55e;
+}
+
+.dot-overdue{
+
+    background:#ef4444;
+}
+
+.dot-streak{
+
+    background:#f59e0b;
+}
+
+/* ==========================================
+   LEGEND
+========================================== */
+
+.calendar-legend{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-top:25px;
+
+    justify-content:center;
+}
+
+.legend-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:.9rem;
+}
+
+.legend{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+}
+
+.today-dot{
+    background:#9333ea;
+}
+
+.reminder-dot{
+    background:#c084fc;
+}
+
+.completed-dot{
+    background:#22c55e;
+}
+
+.overdue-dot{
+    background:#ef4444;
+}
+
+.streak-dot{
+    background:#f59e0b;
+}
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.sidebar-card{
+
+    padding:22px;
+}
+
+.sidebar-card h4{
+
+    color:var(--purple);
+
+    font-weight:700;
+
+    margin-bottom:18px;
+}
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+.form-control{
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:14px;
+}
+
+.form-control:focus{
+
+    box-shadow:
+    0 0 0 4px rgba(147,51,234,.15);
+}
+
+/* ==========================================
+   STATS
+========================================== */
+
+.stats-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+}
+
+.stat-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    background:
+    rgba(147,51,234,.08);
+}
+
+/* ==========================================
+   DAY REMINDERS
+========================================== */
+
+.reminder-item{
+
+    padding:12px;
+
+    margin-bottom:10px;
+
+    border-radius:12px;
+
+    background:
+    rgba(147,51,234,.08);
+}
+
+.reminder-item h6{
+
+    margin-bottom:5px;
+
+    font-weight:600;
+}
+
+/* ==========================================
+   FLOATING BUTTON
+========================================== */
+
+.floating-add{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:50%;
+
+    text-decoration:none;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:1.6rem;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--pink),
+        var(--purple)
+    );
+
+    box-shadow:
+    0 15px 35px rgba(147,51,234,.35);
+
+    transition:.3s;
+
+    z-index:999;
+}
+
+.floating-add:hover{
+
+    color:white;
+
+    transform:scale(1.08);
+}
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark{
+
+    background:
+    linear-gradient(
+        -45deg,
+        #09090f,
+        #12121c,
+        #181825,
+        #111827
+    );
+
+    color:white;
+}
+
+body.dark .premium-navbar,
+body.dark .glass-card{
+
+    background:
+    rgba(18,18,30,.80);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+}
+
+body.dark .header-card p{
+
+    color:#cbd5e1;
+}
+
+body.dark .nav-btn,
+body.dark .theme-btn,
+body.dark .month-btn{
+
+    background:#232336;
+
+    color:white;
+}
+
+body.dark .calendar-day{
+
+    background:#232336;
+
+    color:white;
+}
+
+body.dark .form-control{
+
+    background:#232336;
+
+    color:white;
+}
+
+body.dark .form-control::placeholder{
+
+    color:#cbd5e1;
+}
+
+body.dark .stat-row,
+body.dark .reminder-item{
+
+    background:
+    rgba(236,72,153,.15);
+}
+
+body.dark .weekdays{
+
+    color:#f9a8d4;
+}
+
+body.dark .calendar-header h2{
+
+    color:#f9a8d4;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+    .header-card{
+
+        flex-direction:column;
+
+        gap:15px;
+
+        text-align:center;
+    }
+}
+
+@media(max-width:768px){
+
+    .calendar-day{
+
+        min-height:75px;
+
+        padding:8px;
+    }
+
+    .day-number{
+
+        font-size:.9rem;
+    }
+
+    .calendar-header h2{
+
+        font-size:1.3rem;
+    }
+
+    .floating-add{
+
+        width:58px;
+        height:58px;
+
+        right:20px;
+        bottom:20px;
+    }
+}
+
+@media(max-width:576px){
+
+    .premium-navbar{
+
+        margin:10px;
+    }
+
+    .weekdays{
+
+        font-size:.75rem;
+    }
+
+    .calendar-day{
+
+        min-height:60px;
+
+        font-size:.8rem;
+    }
+
+    .dot{
+
+        width:7px;
+        height:7px;
+    }
+
+    .calendar-legend{
+
+        justify-content:flex-start;
+    }
+}
