@@ -235,7 +235,7 @@ function getUpcomingRemainders() {
             return first - second;
         })
 
-        .slice(0, 5);
+        .slice(0, 3);
 }
 
 // ==========================================
