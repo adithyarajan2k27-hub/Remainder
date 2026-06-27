@@ -1,132 +1,619 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remainder - Never Miss Anything</title>
-    <link rel="stylesheet" href="css/index.css">
+<meta charset="UTF-8">
+<title>Remainder — Never Forget What Matters</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --violet-900:#2e0a4f;
+    --violet-700:#5b21b6;
+    --violet-600:#7c3aed;
+    --violet-500:#9d4edd;
+    --magenta-500:#e0399c;
+    --magenta-300:#ff8fd6;
+    --amber-400:#ffb454;
+    --teal-400:#3ed8c4;
+    --pink-bg:#fff0f7;
+    --ink:#1b1230;
+    --grey:#6b6178;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Poppins','Segoe UI',sans-serif;
+    background:var(--pink-bg);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  /* ============ NAVBAR ============ */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 70px;
+    backdrop-filter:blur(14px);
+    background:rgba(255,240,247,0.7);
+    border-bottom:1px solid rgba(157,78,221,0.12);
+    transition:padding .3s ease, box-shadow .3s ease;
+  }
+  .nav-logo{display:flex; align-items:center; gap:10px; font-size:1.4rem; font-weight:900; color:var(--violet-600);}
+  .nav-logo .heart{font-size:1.5rem; animation:heartbeat 1.7s ease-in-out infinite;}
+  @keyframes heartbeat{
+    0%,100%{transform:scale(1);} 15%{transform:scale(1.25) rotate(-4deg);}
+    30%{transform:scale(0.94);} 45%{transform:scale(1.15) rotate(3deg);} 60%{transform:scale(1);}
+  }
+  .nav-links{display:flex; gap:40px; font-weight:600; color:var(--ink); font-size:0.96rem;}
+  .nav-links a{text-decoration:none; color:inherit; position:relative; transition:color .2s ease;}
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-6px; width:0%; height:2px;
+    background:linear-gradient(90deg,var(--violet-600),var(--magenta-500)); transition:width .3s ease;
+  }
+  .nav-links a:hover{color:var(--violet-600);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    padding:11px 26px; border:none; border-radius:30px; cursor:pointer;
+    background:linear-gradient(90deg,var(--violet-600),var(--magenta-500));
+    color:#fff; font-weight:700; font-size:0.92rem;
+    box-shadow:0 8px 20px rgba(124,58,237,0.3);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px) scale(1.04); box-shadow:0 12px 26px rgba(224,57,156,0.4);}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; align-items:center;
+    padding:160px 70px 100px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 12% 20%, rgba(255,143,214,0.35), transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(157,78,221,0.3), transparent 45%),
+      radial-gradient(circle at 70% 85%, rgba(62,216,196,0.22), transparent 45%),
+      linear-gradient(160deg,#fff0f7 0%, #fbe5ff 45%, #f1e3ff 100%);
+  }
+
+  .blob{position:absolute; border-radius:50%; filter:blur(50px); opacity:.5; pointer-events:none; animation:driftBig 16s ease-in-out infinite;}
+  .blob1{width:340px;height:340px; background:var(--magenta-300); top:-80px; left:-80px;}
+  .blob2{width:280px;height:280px; background:var(--teal-400); bottom:-60px; right:0; animation-delay:3s;}
+  .blob3{width:200px;height:200px; background:var(--amber-400); top:50%; left:48%; opacity:.3; animation-delay:6s;}
+  @keyframes driftBig{0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(30px,-26px) scale(1.1);}}
+
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 1fr; gap:60px; align-items:center;
+    width:100%; position:relative; z-index:3;
+  }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,0.7); border:1px solid rgba(157,78,221,0.25);
+    padding:9px 18px; border-radius:30px; font-weight:700; font-size:0.85rem; color:var(--violet-600);
+    margin-bottom:22px; opacity:0; animation:fadeUp .7s ease forwards .15s;
+  }
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%; background:#22c55e; animation:pulseDot 1.6s ease-out infinite;}
+  @keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(34,197,94,.6);} 70%{box-shadow:0 0 0 9px rgba(34,197,94,0);} 100%{box-shadow:0 0 0 0 rgba(34,197,94,0);}}
+
+  .hero h1{
+    font-size:4rem; font-weight:900; line-height:1.08; margin-bottom:22px;
+    opacity:0; animation:fadeUp .7s ease forwards .3s;
+  }
+  .hero h1 .grad{
+    background:linear-gradient(90deg,var(--violet-600),var(--magenta-500),var(--amber-400));
+    background-size:200% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:shine 5s linear infinite;
+  }
+  @keyframes shine{to{background-position:200% center;}}
+
+  @keyframes fadeUp{from{opacity:0; transform:translateY(22px);} to{opacity:1; transform:translateY(0);}}
+
+  .hero p.lead{
+    font-size:1.15rem; color:var(--grey); line-height:1.7; max-width:520px; margin-bottom:36px;
+    opacity:0; animation:fadeUp .7s ease forwards .45s;
+  }
+  .hero p.lead b{color:var(--ink);}
+
+  .hero-quote{
+    font-size:1.05rem; font-style:italic; color:var(--violet-700); font-weight:600;
+    margin-bottom:36px; padding-left:18px; border-left:3px solid var(--magenta-500);
+    opacity:0; animation:fadeUp .7s ease forwards .55s;
+  }
+
+  .cta-row{display:flex; gap:18px; flex-wrap:wrap; opacity:0; animation:fadeUp .7s ease forwards .65s;}
+
+  .btn-primary{
+    position:relative; overflow:hidden;
+    padding:18px 38px; border:none; border-radius:50px; cursor:pointer;
+    background:linear-gradient(90deg,var(--violet-600),var(--magenta-500));
+    background-size:200% 100%; background-position:0% 0%;
+    color:#fff; font-weight:800; font-size:1.05rem;
+    box-shadow:0 16px 36px rgba(124,58,237,0.4);
+    transition:background-position .5s ease, transform .2s ease, box-shadow .3s ease;
+    display:inline-flex; align-items:center; gap:10px;
+  }
+  .btn-primary:hover{
+    background-position:100% 0%; transform:translateY(-3px) scale(1.03);
+    box-shadow:0 20px 44px rgba(224,57,156,0.48);
+  }
+  .btn-primary .arrow{transition:transform .3s ease;}
+  .btn-primary:hover .arrow{transform:translateX(5px);}
+  .btn-primary .ripple{
+    position:absolute; border-radius:50%; background:rgba(255,255,255,0.5);
+    transform:scale(0); animation:rippleAnim .6s ease-out; pointer-events:none;
+  }
+  @keyframes rippleAnim{to{transform:scale(4); opacity:0;}}
+
+  .btn-secondary{
+    padding:18px 32px; border-radius:50px; cursor:pointer;
+    background:rgba(255,255,255,0.7); border:1.6px solid rgba(157,78,221,0.3);
+    color:var(--violet-700); font-weight:700; font-size:1.02rem;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:all .25s ease;
+  }
+  .btn-secondary:hover{
+    background:#fff; border-color:var(--violet-500); transform:translateY(-3px);
+    box-shadow:0 12px 26px rgba(124,58,237,0.18);
+  }
+
+  .trust-row{
+    display:flex; align-items:center; gap:14px; margin-top:36px;
+    opacity:0; animation:fadeUp .7s ease forwards .8s;
+  }
+  .avatar-stack{display:flex;}
+  .avatar-stack img{
+    width:42px; height:42px; border-radius:50%; border:3px solid #fff;
+    margin-left:-12px; object-fit:cover; box-shadow:0 4px 10px rgba(0,0,0,0.15);
+  }
+  .avatar-stack img:first-child{margin-left:0;}
+  .trust-row .num{font-weight:800; color:var(--ink);}
+  .trust-row .txt{font-size:0.88rem; color:var(--grey);}
+
+  /* ---------- hero visual: floating real-photo cards (instagram-style) ---------- */
+  .hero-visual{position:relative; height:560px;}
+  .float-photo{
+    position:absolute; border-radius:22px; overflow:hidden;
+    box-shadow:0 25px 50px rgba(91,33,182,0.28);
+    border:5px solid #fff;
+    opacity:0;
+  }
+  .float-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  .fp1{ width:230px; height:300px; top:18%; left:8%; animation:popInPhoto .7s ease forwards 0.6s, floatPath1 9s ease-in-out infinite 1.3s; }
+  .fp2{ width:200px; height:260px; top:0%; left:52%; animation:popInPhoto .7s ease forwards 0.9s, floatPath2 10s ease-in-out infinite 1.6s; }
+  .fp3{ width:210px; height:270px; top:48%; left:48%; animation:popInPhoto .7s ease forwards 1.2s, floatPath3 11s ease-in-out infinite 1.9s; }
+  .fp4{ width:170px; height:170px; top:66%; left:4%; border-radius:50%; animation:popInPhoto .7s ease forwards 1.5s, floatPath4 8s ease-in-out infinite 2.2s; }
+
+  @keyframes popInPhoto{ from{opacity:0; transform:translateY(30px) scale(0.85);} to{opacity:1; transform:translateY(0) scale(1);} }
+  @keyframes floatPath1{0%{transform:translate(0,0) rotate(0deg);} 50%{transform:translate(10px,-18px) rotate(1.5deg);} 100%{transform:translate(0,0) rotate(0deg);}}
+  @keyframes floatPath2{0%{transform:translate(0,0) rotate(0deg);} 50%{transform:translate(-12px,16px) rotate(-2deg);} 100%{transform:translate(0,0) rotate(0deg);}}
+  @keyframes floatPath3{0%{transform:translate(0,0) rotate(0deg);} 50%{transform:translate(14px,14px) rotate(2deg);} 100%{transform:translate(0,0) rotate(0deg);}}
+  @keyframes floatPath4{0%{transform:translate(0,0) rotate(0deg);} 50%{transform:translate(-8px,-14px) rotate(-3deg);} 100%{transform:translate(0,0) rotate(0deg);}}
+
+  .sticker{
+    position:absolute; background:#fff; border-radius:16px; padding:10px 14px;
+    box-shadow:0 14px 28px rgba(46,10,79,0.25); font-weight:700; font-size:0.82rem;
+    display:flex; align-items:center; gap:8px; z-index:5; opacity:0;
+    animation:popInPhoto .6s ease forwards;
+  }
+  .st1{ top:10%; left:42%; animation-delay:1.8s; color:var(--magenta-500); }
+  .st2{ top:60%; left:30%; animation-delay:2.1s; color:var(--violet-600); }
+  .st3{ bottom:6%; left:54%; animation-delay:2.4s; color:#16a34a; }
+  .heartpop{font-size:1.2rem; animation:heartbeat 1.4s ease-in-out infinite;}
+
+  /* ============ MARQUEE STRIP ============ */
+  .marquee-strip{
+    background:linear-gradient(90deg,var(--violet-700),var(--magenta-500));
+    padding:16px 0; overflow:hidden; white-space:nowrap;
+  }
+  .marquee-track{
+    display:inline-block; padding-left:100%;
+    animation:scrollLeft 22s linear infinite;
+    color:#fff; font-weight:700; font-size:1.05rem; letter-spacing:0.5px;
+  }
+  .marquee-track span{margin:0 36px; opacity:0.95;}
+  @keyframes scrollLeft{from{transform:translateX(0);} to{transform:translateX(-100%);}}
+
+  /* ============ SOCIAL PROOF / QUOTE SECTION ============ */
+  .section{padding:110px 70px;}
+  .section-head{text-align:center; max-width:680px; margin:0 auto 60px;}
+  .tag{
+    display:inline-block; color:var(--magenta-500); font-weight:800; font-size:0.88rem;
+    letter-spacing:1px; text-transform:uppercase; margin-bottom:14px;
+  }
+  .section-head h2{font-size:2.6rem; font-weight:900; line-height:1.2; margin-bottom:16px;}
+  .section-head h2 .grad{
+    background:linear-gradient(90deg,var(--violet-600),var(--magenta-500));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .section-head p{color:var(--grey); font-size:1.05rem; line-height:1.7;}
+
+  .reveal{opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* testimonial cards with real-feel photos */
+  .testimonial-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:30px;
+  }
+  .t-card{
+    background:#fff; border-radius:22px; padding:30px; position:relative;
+    box-shadow:0 18px 40px rgba(91,33,182,0.1);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .t-card:hover{transform:translateY(-8px); box-shadow:0 26px 54px rgba(91,33,182,0.2);}
+  .t-card .quote-mark{font-size:2.6rem; color:var(--magenta-300); font-weight:900; line-height:1; margin-bottom:6px;}
+  .t-card p{color:var(--ink); font-size:0.98rem; line-height:1.65; margin-bottom:22px; min-height:96px;}
+  .t-user{display:flex; align-items:center; gap:14px;}
+  .t-user img{width:52px; height:52px; border-radius:50%; object-fit:cover; border:3px solid var(--pink-bg);}
+  .t-user .nm{font-weight:800; font-size:0.95rem;}
+  .t-user .rl{font-size:0.78rem; color:var(--grey);}
+  .t-card .stars{color:var(--amber-400); font-size:0.9rem; margin-top:4px;}
+
+  /* ============ FEATURE STRIP ============ */
+  .feature-strip{
+    background:linear-gradient(160deg,#f3e8ff, #ffe9f5);
+  }
+  .feature-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:26px;
+  }
+  .f-card{
+    background:#fff; border-radius:20px; padding:32px 26px; text-align:center;
+    box-shadow:0 16px 36px rgba(91,33,182,0.08);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .f-card:hover{transform:translateY(-10px) rotate(-1deg); box-shadow:0 24px 50px rgba(91,33,182,0.18);}
+  .f-icon{
+    width:64px;height:64px; border-radius:18px; display:flex; align-items:center; justify-content:center;
+    font-size:1.8rem; margin:0 auto 18px;
+    background:linear-gradient(135deg,var(--violet-500),var(--magenta-500));
+    box-shadow:0 10px 22px rgba(124,58,237,0.3);
+  }
+  .f-card h3{font-size:1.08rem; font-weight:800; margin-bottom:8px;}
+  .f-card p{font-size:0.88rem; color:var(--grey); line-height:1.6;}
+
+  /* ============ COMMUNITY PHOTO WALL ============ */
+  .wall-section{position:relative; overflow:hidden;}
+  .wall-grid{
+    display:grid; grid-template-columns:repeat(6,1fr); gap:16px;
+  }
+  .wall-grid img{
+    width:100%; height:160px; object-fit:cover; border-radius:16px;
+    box-shadow:0 10px 24px rgba(91,33,182,0.12);
+    transition:transform .35s ease, box-shadow .35s ease, filter .35s ease;
+    filter:saturate(0.95);
+  }
+  .wall-grid img:hover{transform:scale(1.06) rotate(-1deg); box-shadow:0 18px 36px rgba(91,33,182,0.28); filter:saturate(1.15);}
+  .wall-grid > div:nth-child(3n+2){margin-top:24px;}
+  .wall-grid > div:nth-child(4n){margin-top:-12px;}
+
+  /* ============ BIG QUOTE ============ */
+  .big-quote{
+    text-align:center; padding:120px 70px;
+    background:linear-gradient(135deg,var(--violet-700),var(--magenta-500));
+    position:relative; overflow:hidden;
+  }
+  .big-quote::before, .big-quote::after{
+    content:''; position:absolute; border-radius:50%; filter:blur(50px); opacity:.35;
+  }
+  .big-quote::before{width:300px;height:300px; background:var(--teal-400); top:-80px; left:-60px;}
+  .big-quote::after{width:260px;height:260px; background:var(--amber-400); bottom:-80px; right:-40px;}
+  .big-quote h2{
+    color:#fff; font-size:2.4rem; font-weight:800; max-width:780px; margin:0 auto 18px;
+    line-height:1.4; position:relative; z-index:2;
+  }
+  .big-quote .by{color:rgba(255,255,255,0.85); font-weight:600; position:relative; z-index:2;}
+
+  /* ============ FINAL CTA ============ */
+  .final-cta{
+    text-align:center; padding:120px 70px;
+    background:linear-gradient(160deg,#fff0f7,#f1e3ff);
+    position:relative;
+  }
+  .final-cta h2{font-size:2.8rem; font-weight:900; margin-bottom:18px;}
+  .final-cta h2 .grad{
+    background:linear-gradient(90deg,var(--violet-600),var(--magenta-500));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .final-cta p{color:var(--grey); font-size:1.08rem; margin-bottom:36px;}
+
+  /* ============ FOOTER ============ */
+  footer{
+    background:var(--violet-900); color:#e9d8ff; padding:60px 70px 30px;
+  }
+  .footer-top{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px; margin-bottom:40px;
+  }
+  .footer-logo{display:flex; align-items:center; gap:10px; font-size:1.3rem; font-weight:900; color:#fff; margin-bottom:14px;}
+  .footer-top p{max-width:320px; color:#c8aee6; font-size:0.9rem; line-height:1.6;}
+  .footer-cols{display:flex; gap:60px;}
+  .footer-col h4{color:#fff; font-size:0.95rem; margin-bottom:14px;}
+  .footer-col a{display:block; color:#c8aee6; text-decoration:none; font-size:0.88rem; margin-bottom:10px; transition:color .2s;}
+  .footer-col a:hover{color:#fff;}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.12); padding-top:24px;
+    text-align:center; font-size:0.82rem; color:#a98ec9;
+  }
+
+  /* scroll-to-top floating heart button */
+  .fab{
+    position:fixed; bottom:30px; right:30px; width:54px; height:54px; border-radius:50%;
+    background:linear-gradient(135deg,var(--violet-600),var(--magenta-500));
+    display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.3rem;
+    cursor:pointer; box-shadow:0 14px 30px rgba(124,58,237,0.4); z-index:60;
+    opacity:0; pointer-events:none; transition:opacity .3s ease, transform .2s ease;
+  }
+  .fab.show{opacity:1; pointer-events:auto;}
+  .fab:hover{transform:translateY(-4px) scale(1.08);}
+
+  @media (max-width:1000px){
+    nav{padding:16px 30px;}
+    .nav-links{display:none;}
+    .hero{padding:140px 30px 80px;}
+    .hero-grid{grid-template-columns:1fr; gap:80px;}
+    .hero h1{font-size:2.6rem;}
+    .hero-visual{height:420px;}
+    .section{padding:80px 30px;}
+    .testimonial-grid{grid-template-columns:1fr;}
+    .feature-grid{grid-template-columns:repeat(2,1fr);}
+    .wall-grid{grid-template-columns:repeat(3,1fr);}
+    .footer-top{flex-direction:column;}
+  }
+</style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">
-            💜 Remainder
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo"><span class="heart">💜</span> Remainder</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#community">Community</a>
+      <a href="#stories">Stories</a>
+    </div>
+    <button class="nav-cta" onclick="window.location.href='login.html'">Get Started</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Trusted by people who refuse to forget</div>
+        <h1>Never Forget<br>What <span class="grad">Matters</span> Most</h1>
+        <p class="lead">Real people. Real lives. Real reminders. <b>Remainder</b> blends your tasks, notes, and life's little moments into one beautifully simple place — so nothing important ever slips away again.</p>
+        <p class="hero-quote">"The smallest things, remembered at the right time, build the biggest lives." 💜</p>
+
+        <div class="cta-row">
+          <button class="btn-primary" id="getStartedBtn">Get Started <span class="arrow">→</span></button>
+          <button class="btn-secondary" onclick="document.getElementById('stories').scrollIntoView({behavior:'smooth'})">▶ See Real Stories</button>
         </div>
 
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Features</a>
-            <a href="#">Remainders</a>
-            <a href="#">Contact</a>
+        <div class="trust-row">
+          <div class="avatar-stack">
+            <img src="https://i.pravatar.cc/100?img=47" alt="user">
+            <img src="https://i.pravatar.cc/100?img=12" alt="user">
+            <img src="https://i.pravatar.cc/100?img=33" alt="user">
+            <img src="https://i.pravatar.cc/100?img=5" alt="user">
+          </div>
+          <div><span class="num">12,000+</span> <span class="txt">people already remembering smarter</span></div>
         </div>
+      </div>
 
-        <button class="login-btn">Get Started</button>
-    </nav>
+      <div class="hero-visual">
+        <div class="float-photo fp1"><img src="https://i.pravatar.cc/400?img=44" alt="real user"></div>
+        <div class="float-photo fp2"><img src="https://i.pravatar.cc/400?img=68" alt="real user"></div>
+        <div class="float-photo fp3"><img src="https://i.pravatar.cc/400?img=25" alt="real user"></div>
+        <div class="float-photo fp4"><img src="https://i.pravatar.cc/300?img=9" alt="real user"></div>
 
-    <section class="hero">
+        <div class="sticker st1">💊 Medicine done <span class="heartpop">✅</span></div>
+        <div class="sticker st2">🎂 Reminder set!</div>
+        <div class="sticker st3">🔥 15 day streak</div>
+      </div>
+    </div>
+  </section>
 
-        <div class="hero-text">
-            <h1>Never Forget<br>What Matters Most</h1>
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>💜 NEVER MISS A MOMENT</span>
+      <span>✅ STAY ON TOP OF EVERYTHING</span>
+      <span>🔔 SMART REMINDERS, REAL LIFE</span>
+      <span>🌸 BUILT WITH LOVE, BY FRIENDS</span>
+      <span>💜 NEVER MISS A MOMENT</span>
+      <span>✅ STAY ON TOP OF EVERYTHING</span>
+      <span>🔔 SMART REMINDERS, REAL LIFE</span>
+      <span>🌸 BUILT WITH LOVE, BY FRIENDS</span>
+    </div>
+  </div>
 
-            <p>
-                Stay organized with smart remainders,
-                task tracking, notifications and daily planning.
-            </p>
+  <!-- TESTIMONIALS -->
+  <section class="section" id="stories">
+    <div class="section-head reveal">
+      <span class="tag">Real People, Real Stories</span>
+      <h2>Loved by people <span class="grad">just like you</span></h2>
+      <p>Every quote below is from someone who, like you, just wants one less thing to worry about forgetting.</p>
+    </div>
 
-            <div class="hero-buttons">
-                <button class="primary-btn" onclick="window.location.href='login.html'">
-                    Create Remainder
-                </button>
-
-                <button class="secondary-btn">
-                    Explore Features
-                </button>
-            </div>
+    <div class="testimonial-grid">
+      <div class="t-card reveal">
+        <div class="quote-mark">"</div>
+        <p>I used to forget my own mom's birthday every single year. Remainder hasn't let that happen since the day I signed up.</p>
+        <div class="t-user">
+          <img src="https://i.pravatar.cc/120?img=32" alt="Aditya">
+          <div><div class="nm">Aditya R.</div><div class="rl">Student, Madurai</div></div>
         </div>
+        <div class="stars">★★★★★</div>
+      </div>
 
-        <div class="hero-image">
-
-            <div class="floating-card card1">
-                <h3>📅 Meeting</h3>
-                <p>10:00 AM Today</p>
-            </div>
-
-            <div class="floating-card card2">
-                <h3>🎂 Birthday</h3>
-                <p>Tomorrow</p>
-            </div>
-
-            <div class="floating-card card3">
-                <h3>💊 Medicine</h3>
-                <p>8:00 PM</p>
-            </div>
-
+      <div class="t-card reveal">
+        <div class="quote-mark">"</div>
+        <p>Between work, medicines, and my kid's school events — this app feels like the second brain I always needed.</p>
+        <div class="t-user">
+          <img src="https://i.pravatar.cc/120?img=49" alt="Priya">
+          <div><div class="nm">Priya M.</div><div class="rl">Working Mom</div></div>
         </div>
+        <div class="stars">★★★★★</div>
+      </div>
 
-    </section>
-
-    <section class="stats">
-
-        <div class="stat-card">
-            <h2>5K+</h2>
-            <p>Active Users</p>
+      <div class="t-card reveal">
+        <div class="quote-mark">"</div>
+        <p>The streak feature genuinely turned remembering my routines into something I actually look forward to.</p>
+        <div class="t-user">
+          <img src="https://i.pravatar.cc/120?img=15" alt="Karthik">
+          <div><div class="nm">Karthik S.</div><div class="rl">Software Engineer</div></div>
         </div>
+        <div class="stars">★★★★★</div>
+      </div>
+    </div>
+  </section>
 
-        <div class="stat-card">
-            <h2>50K+</h2>
-            <p>Remainders Created</p>
+  <!-- FEATURES -->
+  <section class="section feature-strip" id="features">
+    <div class="section-head reveal">
+      <span class="tag">Why People Stay</span>
+      <h2>Designed for <span class="grad">real, busy lives</span></h2>
+      <p>Every feature is built around one simple human truth — we all forget things. So we built something that won't.</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="f-card reveal">
+        <div class="f-icon">🔔</div>
+        <h3>Smart Reminders</h3>
+        <p>Gentle nudges exactly when you need them — never too early, never too late.</p>
+      </div>
+      <div class="f-card reveal">
+        <div class="f-icon">📅</div>
+        <h3>Life Calendar</h3>
+        <p>Birthdays, meetings, medicines — all living together in one beautiful view.</p>
+      </div>
+      <div class="f-card reveal">
+        <div class="f-icon">🔥</div>
+        <h3>Daily Streaks</h3>
+        <p>Build habits that stick, one satisfying streak at a time.</p>
+      </div>
+      <div class="f-card reveal">
+        <div class="f-icon">📊</div>
+        <h3>Personal Analytics</h3>
+        <p>See your productivity grow with insights that actually mean something.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY PHOTO WALL -->
+  <section class="section wall-section" id="community">
+    <div class="section-head reveal">
+      <span class="tag">Our Community</span>
+      <h2>The faces behind <span class="grad">every reminder</span></h2>
+      <p>Thousands of real people trust Remainder with the moments that matter most to them.</p>
+    </div>
+
+    <div class="wall-grid reveal">
+      <div><img src="https://i.pravatar.cc/300?img=21" alt="community"></div>
+      <div><img src="https://i.pravatar.cc/300?img=58" alt="community"></div>
+      <div><img src="https://i.pravatar.cc/300?img=3" alt="community"></div>
+      <div><img src="https://i.pravatar.cc/300?img=36" alt="community"></div>
+      <div><img src="https://i.pravatar.cc/300?img=64" alt="community"></div>
+      <div><img src="https://i.pravatar.cc/300?img=11" alt="community"></div>
+      <div><img src="https://i.pravatar.cc/300?img=27" alt="community"></div>
+      <div><img src="https://i.pravatar.cc/300?img=41" alt="community"></div>
+      <div><img src="https://i.pravatar.cc/300?img=52" alt="community"></div>
+      <div><img src="https://i.pravatar.cc/300?img=8" alt="community"></div>
+      <div><img src="https://i.pravatar.cc/300?img=60" alt="community"></div>
+      <div><img src="https://i.pravatar.cc/300?img=19" alt="community"></div>
+    </div>
+  </section>
+
+  <!-- BIG QUOTE -->
+  <div class="big-quote reveal">
+    <h2>"We don't remember days, we remember moments. Remainder simply makes sure you never lose either."</h2>
+    <div class="by">— The Remainder Team 💜</div>
+  </div>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <h2>Your life is <span class="grad">worth remembering</span></h2>
+    <p>Join thousands of people who decided forgetting is no longer an option.</p>
+    <button class="btn-primary" id="finalCtaBtn">Get Started Free <span class="arrow">→</span></button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">💜 Remainder</div>
+        <p>Stay organized. Stay productive. Stay you. Built with love, for everyone who has a life worth remembering.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="#community">Community</a>
+          <a href="#stories">Stories</a>
         </div>
-
-        <div class="stat-card">
-            <h2>99%</h2>
-            <p>Task Completion</p>
+        <div class="footer-col">
+          <h4>Get Started</h4>
+          <a href="login.html">Login</a>
+          <a href="login.html">Sign Up</a>
         </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Remainder. Made with 💜 by two friends who never wanted to forget.</div>
+  </footer>
 
-    </section>
+  <div class="fab" id="fabBtn">⬆</div>
 
-    <section class="features">
+<script>
+  // navigate to login.html
+  function goLogin(){ window.location.href = 'login.html'; }
+  document.getElementById('getStartedBtn').addEventListener('click', goLogin);
+  document.getElementById('finalCtaBtn').addEventListener('click', goLogin);
+  document.querySelector('.nav-cta').addEventListener('click', goLogin);
 
-        <h2>Why Choose Remainder?</h2>
+  // ripple on primary buttons
+  document.querySelectorAll('.btn-primary').forEach(btn=>{
+    btn.addEventListener('click', function(e){
+      const circle = document.createElement('span');
+      circle.classList.add('ripple');
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      circle.style.width = circle.style.height = size+'px';
+      circle.style.left = (e.clientX - rect.left - size/2)+'px';
+      circle.style.top = (e.clientY - rect.top - size/2)+'px';
+      btn.appendChild(circle);
+      setTimeout(()=>circle.remove(), 600);
+    });
+  });
 
-        <div class="feature-grid">
+  // scroll reveal animation
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){ en.target.classList.add('in'); }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>obs.observe(el));
 
-            <div class="feature-card">
-                <span>🔔</span>
-                <h3>Smart Notifications</h3>
-                <p>
-                    Never miss important events with instant alerts.
-                </p>
-            </div>
+  // floating action button show/hide + scroll to top
+  const fab = document.getElementById('fabBtn');
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 500){ fab.classList.add('show'); } else { fab.classList.remove('show'); }
+  });
+  fab.addEventListener('click', ()=>{ window.scrollTo({top:0, behavior:'smooth'}); });
 
-            <div class="feature-card">
-                <span>📊</span>
-                <h3>Track Progress</h3>
-                <p>
-                    Monitor your completed and pending tasks.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <span>☁️</span>
-                <h3>Cloud Sync</h3>
-                <p>
-                    Access remainders from any device.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <span>🎯</span>
-                <h3>Daily Goals</h3>
-                <p>
-                    Stay productive and focused every day.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
+  // navbar shrink on scroll
+  const navEl = document.querySelector('nav');
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 30){
+      navEl.style.boxShadow = '0 8px 24px rgba(91,33,182,0.1)';
+    } else {
+      navEl.style.boxShadow = 'none';
+    }
+  });
+</script>
 
 </body>
 </html>
