@@ -24,18 +24,21 @@
     --pink:#ec4899;
     --purple:#9333ea;
 
-    --dark:#111827;
+    --bg1:#ffd6ec;
+    --bg2:#fbcfe8;
+    --bg3:#e9d5ff;
+    --bg4:#dbeafe;
+
+    --text:#1f2937;
 
     --glass:
-    rgba(255,255,255,.6);
+    rgba(255,255,255,.60);
 
     --border:
     rgba(255,255,255,.35);
 
     --shadow:
     0 15px 35px rgba(0,0,0,.12);
-
-    --text:#1f2937;
 }
 
 /* ==========================================
@@ -51,10 +54,10 @@ body{
     background:
     linear-gradient(
         -45deg,
-        #ffd6ec,
-        #fbcfe8,
-        #e9d5ff,
-        #dbeafe
+        var(--bg1),
+        var(--bg2),
+        var(--bg3),
+        var(--bg4)
     );
 
     background-size:
@@ -65,10 +68,6 @@ body{
 
     overflow-x:hidden;
 }
-
-/* ==========================================
-   ANIMATION
-========================================== */
 
 @keyframes bgMove{
 
@@ -112,16 +111,12 @@ body{
 
 .logo{
 
+    color:var(--purple)!important;
+
     font-size:1.6rem;
 
     font-weight:700;
-
-    color:var(--purple)!important;
 }
-
-/* ==========================================
-   THEME BUTTON
-========================================== */
 
 .nav-btn,
 .theme-btn{
@@ -151,10 +146,13 @@ body{
     transition:.3s;
 }
 
+.nav-btn:hover,
 .theme-btn:hover{
 
     transform:
     translateY(-3px);
+
+    color:var(--purple);
 }
 
 /* ==========================================
@@ -185,8 +183,6 @@ body{
 .page-header{
 
     padding:30px;
-
-    text-align:center;
 }
 
 .page-header h1{
@@ -198,34 +194,24 @@ body{
 
 .page-header p{
 
-    margin-top:10px;
-
     color:#6b7280;
+
+    margin-top:8px;
 }
 
 /* ==========================================
-   STATS
+   KPI CARDS
 ========================================== */
 
 .stats-card{
 
-    background:
-    linear-gradient(
-        135deg,
-        #ec4899,
-        #9333ea
-    );
-
     color:white;
 
-    padding:25px;
+    padding:28px;
 
     border-radius:24px;
 
     text-align:center;
-
-    box-shadow:
-    0 15px 35px rgba(147,51,234,.25);
 
     transition:.3s;
 }
@@ -233,7 +219,7 @@ body{
 .stats-card:hover{
 
     transform:
-    translateY(-5px);
+    translateY(-6px);
 }
 
 .stats-card h2{
@@ -245,300 +231,236 @@ body{
 
 .stats-card p{
 
-    margin-top:5px;
+    margin-top:8px;
 
     margin-bottom:0;
 }
 
+.total-card{
+
+    background:
+    linear-gradient(
+        135deg,
+        #ec4899,
+        #9333ea
+    );
+}
+
+.completed-card{
+
+    background:
+    linear-gradient(
+        135deg,
+        #10b981,
+        #059669
+    );
+}
+
+.pending-card{
+
+    background:
+    linear-gradient(
+        135deg,
+        #f59e0b,
+        #d97706
+    );
+}
+
+.rate-card{
+
+    background:
+    linear-gradient(
+        135deg,
+        #3b82f6,
+        #2563eb
+    );
+}
+
 /* ==========================================
-   SEARCH SECTION
+   ANALYTICS CARDS
 ========================================== */
 
-.search-section{
-
-    padding:20px;
-}
-
-.search-section .form-control{
-
-    border:none;
-
-    padding:14px;
-
-    border-radius:15px;
-}
-
-.search-section .input-group-text{
-
-    border:none;
-
-    background:white;
-}
-
-/* ==========================================
-   FILTERS
-========================================== */
-
-.filter-section{
+.analytics-card{
 
     padding:25px;
 }
 
-.form-label{
+.analytics-card h4{
 
-    font-weight:600;
-}
+    color:var(--purple);
 
-.form-select{
+    font-weight:700;
 
-    border:none;
-
-    border-radius:15px;
-
-    padding:12px;
+    margin-bottom:20px;
 }
 
 /* ==========================================
-   REMINDER CARD
+   PRODUCTIVITY SCORE
 ========================================== */
 
-.reminder-card{
+#productivityChart{
+
+    max-width:220px;
+
+    margin:auto;
+}
+
+#productivityScore{
+
+    margin-top:15px;
+
+    color:var(--purple);
+
+    font-weight:700;
+}
+
+/* ==========================================
+   STREAK
+========================================== */
+
+.streak-box{
+
+    padding:25px;
+}
+
+.streak-box span{
+
+    font-size:3rem;
+
+    font-weight:700;
+
+    color:var(--pink);
+}
+
+.streak-box small{
+
+    display:block;
+
+    margin-top:5px;
+
+    color:#6b7280;
+}
+
+/* ==========================================
+   PRIORITY BOXES
+========================================== */
+
+.priority-box{
+
+    text-align:center;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    color:white;
+
+    margin-bottom:15px;
+}
+
+.priority-box h2{
+
+    font-weight:700;
+}
+
+.high-priority{
 
     background:
-    rgba(255,255,255,.65);
-
-    backdrop-filter:
-    blur(15px);
-
-    border:
-    1px solid rgba(255,255,255,.35);
-
-    border-radius:25px;
-
-    padding:22px;
-
-    box-shadow:
-    var(--shadow);
-
-    transition:.3s;
-
-    height:100%;
+    linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
 }
 
-.reminder-card:hover{
+.medium-priority{
 
-    transform:
-    translateY(-6px);
+    background:
+    linear-gradient(
+        135deg,
+        #f59e0b,
+        #d97706
+    );
+}
+
+.low-priority{
+
+    background:
+    linear-gradient(
+        135deg,
+        #10b981,
+        #059669
+    );
 }
 
 /* ==========================================
-   CARD HEADER
+   TODAY SUMMARY
 ========================================== */
 
-.card-header-top{
+.summary-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+}
+
+.summary-item{
+
+    text-align:center;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+    rgba(147,51,234,.08);
+}
+
+.summary-item span{
+
+    display:block;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:var(--purple);
+}
+
+.summary-item p{
+
+    margin-top:8px;
+}
+
+/* ==========================================
+   INSIGHTS
+========================================== */
+
+#insightsContainer{
 
     display:flex;
 
-    justify-content:space-between;
-
-    align-items:flex-start;
+    flex-direction:column;
 
     gap:15px;
 }
 
-.reminder-title{
+.insight-card{
 
-    font-size:1.15rem;
+    padding:15px 20px;
 
-    font-weight:700;
-
-    margin-bottom:10px;
-}
-
-.reminder-description{
-
-    color:#6b7280;
-
-    margin-top:10px;
-}
-
-/* ==========================================
-   BADGES
-========================================== */
-
-.priority-badge{
-
-    padding:8px 14px;
-
-    border-radius:999px;
-
-    font-size:.8rem;
-
-    font-weight:600;
-}
-
-.high{
-
-    background:#fee2e2;
-    color:#dc2626;
-}
-
-.medium{
-
-    background:#fef3c7;
-    color:#d97706;
-}
-
-.low{
-
-    background:#dcfce7;
-    color:#16a34a;
-}
-
-.completed-badge{
-
-    background:#22c55e;
-
-    color:white;
-
-    padding:7px 12px;
-
-    border-radius:999px;
-
-    font-size:.75rem;
-
-    font-weight:600;
-}
-
-.overdue-badge{
-
-    background:#ef4444;
-
-    color:white;
-
-    padding:7px 12px;
-
-    border-radius:999px;
-
-    font-size:.75rem;
-
-    font-weight:600;
-}
-
-/* ==========================================
-   META
-========================================== */
-
-.reminder-meta{
-
-    color:#6b7280;
-
-    font-size:.9rem;
-
-    margin-top:10px;
-}
-
-/* ==========================================
-   CATEGORY
-========================================== */
-
-.category-chip{
-
-    display:inline-block;
-
-    padding:8px 14px;
-
-    margin-top:12px;
-
-    border-radius:999px;
+    border-radius:15px;
 
     background:
-    rgba(147,51,234,.12);
+    rgba(147,51,234,.08);
 
-    color:var(--purple);
+    border-left:
+    5px solid var(--purple);
 
-    font-weight:600;
-
-    font-size:.85rem;
-}
-
-/* ==========================================
-   ACTIONS
-========================================== */
-
-.card-actions{
-
-    display:flex;
-
-    gap:10px;
-
-    margin-top:18px;
-
-    flex-wrap:wrap;
-}
-
-.action-btn{
-
-    border:none;
-
-    padding:10px 15px;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-size:.9rem;
-
-    transition:.3s;
-}
-
-.complete-btn{
-
-    background:#22c55e;
-
-    color:white;
-}
-
-.edit-btn{
-
-    background:#9333ea;
-
-    color:white;
-}
-
-.delete-btn{
-
-    background:#ef4444;
-
-    color:white;
-}
-
-.action-btn:hover{
-
-    transform:
-    translateY(-2px);
-}
-
-/* ==========================================
-   EMPTY STATE
-========================================== */
-
-.empty-state{
-
-    text-align:center;
-
-    padding:60px 20px;
-
-    color:#6b7280;
-}
-
-.empty-state i{
-
-    font-size:4rem;
-
-    margin-bottom:15px;
-
-    color:var(--purple);
+    font-weight:500;
 }
 
 /* ==========================================
@@ -559,13 +481,13 @@ body{
 
     border-radius:50%;
 
+    text-decoration:none;
+
     display:flex;
 
     align-items:center;
 
     justify-content:center;
-
-    text-decoration:none;
 
     color:white;
 
@@ -574,16 +496,16 @@ body{
     background:
     linear-gradient(
         135deg,
-        #ec4899,
-        #9333ea
+        var(--pink),
+        var(--purple)
     );
 
     box-shadow:
     0 15px 35px rgba(147,51,234,.35);
 
-    z-index:999;
-
     transition:.3s;
+
+    z-index:999;
 }
 
 .floating-add:hover{
@@ -592,6 +514,15 @@ body{
 
     transform:
     scale(1.08);
+}
+
+/* ==========================================
+   CHART CONTAINERS
+========================================== */
+
+canvas{
+
+    max-width:100%;
 }
 
 /* ==========================================
@@ -605,28 +536,24 @@ body.dark{
         -45deg,
         #09090f,
         #12121c,
-        #1a1a2e,
+        #181825,
         #111827
     );
 
     color:white;
 }
 
-body.dark .premium-navbar{
-
-    background:
-    rgba(15,15,25,.85);
-}
-
+body.dark .premium-navbar,
 body.dark .glass-card{
 
     background:
-    rgba(18,18,30,.78);
+    rgba(18,18,30,.80);
 
     border:
     1px solid rgba(255,255,255,.08);
 }
 
+body.dark .nav-btn,
 body.dark .theme-btn{
 
     background:#232336;
@@ -635,40 +562,32 @@ body.dark .theme-btn{
 }
 
 body.dark .page-header p,
-body.dark .reminder-meta,
-body.dark .reminder-description{
+body.dark .streak-box small{
 
     color:#cbd5e1;
 }
 
-body.dark .form-control,
-body.dark .form-select{
-
-    background:#232336;
-
-    color:white;
-
-    border:none;
-}
-
-body.dark .input-group-text{
-
-    background:#232336;
-
-    color:white;
-
-    border:none;
-}
-
-body.dark .reminder-card{
-
-    background:#232336;
-}
-
-body.dark .category-chip{
+body.dark .summary-item{
 
     background:
-    rgba(236,72,153,.2);
+    rgba(236,72,153,.15);
+}
+
+body.dark .insight-card{
+
+    background:
+    rgba(236,72,153,.12);
+
+    border-left:
+    5px solid #f472b6;
+}
+
+body.dark .analytics-card h4{
+
+    color:#f9a8d4;
+}
+
+body.dark .summary-item span{
 
     color:#f9a8d4;
 }
@@ -677,21 +596,29 @@ body.dark .category-chip{
    RESPONSIVE
 ========================================== */
 
+@media(max-width:992px){
+
+    .summary-grid{
+
+        grid-template-columns:1fr;
+    }
+}
+
 @media(max-width:768px){
 
-    .page-header{
+    .stats-card{
 
-        padding:22px;
+        padding:20px;
     }
 
-    .page-header h1{
+    .stats-card h2{
 
-        font-size:1.8rem;
+        font-size:1.7rem;
     }
 
-    .card-header-top{
+    .streak-box span{
 
-        flex-direction:column;
+        font-size:2.5rem;
     }
 
     .floating-add{
@@ -711,23 +638,18 @@ body.dark .category-chip{
         margin:10px;
     }
 
-    .stats-card{
+    .page-header{
+
+        padding:22px;
+    }
+
+    .page-header h1{
+
+        font-size:1.8rem;
+    }
+
+    .analytics-card{
 
         padding:18px;
-    }
-
-    .stats-card h2{
-
-        font-size:1.6rem;
-    }
-
-    .card-actions{
-
-        flex-direction:column;
-    }
-
-    .action-btn{
-
-        width:100%;
     }
 }
