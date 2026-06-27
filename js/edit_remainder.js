@@ -1,12 +1,12 @@
 // ==========================================
-// EDIT REMINDER JS
+// EDIT REMAINDER JS
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
     initializeTheme();
 
-    loadReminder();
+    loadRemainder();
 
     setupPrioritySelection();
 
@@ -25,34 +25,34 @@ const params =
         window.location.search
     );
 
-const reminderId =
+const remainderId =
     Number(
         params.get("id")
     );
 
 // ==========================================
-// LOAD REMINDER
+// LOAD REMAINDER
 // ==========================================
 
-function loadReminder() {
+function loadRemainder() {
 
-    const reminders =
+    const remainders =
         JSON.parse(
             localStorage.getItem(
-                "reminders"
+                "remainders"
             )
         ) || [];
 
-    const reminder =
-        reminders.find(
+    const remainder =
+        remainders.find(
             item =>
-            item.id === reminderId
+            item.id === remainderId
         );
 
-    if (!reminder) {
+    if (!remainder) {
 
         alert(
-            "Reminder not found!"
+            "Remainder not found!"
         );
 
         window.location.href =
@@ -64,32 +64,32 @@ function loadReminder() {
     document.getElementById(
         "title"
     ).value =
-        reminder.title || "";
+        remainder.title || "";
 
     document.getElementById(
         "description"
     ).value =
-        reminder.description || "";
+        remainder.description || "";
 
     document.getElementById(
         "date"
     ).value =
-        reminder.date || "";
+        remainder.date || "";
 
     document.getElementById(
         "time"
     ).value =
-        reminder.time || "";
+        remainder.time || "";
 
     document.getElementById(
         "priority"
     ).value =
-        reminder.priority || "";
+        remainder.priority || "";
 
     document.getElementById(
         "category"
     ).value =
-        reminder.category || "";
+        remainder.category || "";
 
     // Activate saved priority
 
@@ -101,7 +101,7 @@ function loadReminder() {
 
             if (
                 chip.dataset.value ===
-                reminder.priority
+                remainder.priority
             ) {
 
                 chip.classList.add(
@@ -121,7 +121,7 @@ function loadReminder() {
 
             if (
                 card.dataset.value ===
-                reminder.category
+                remainder.category
             ) {
 
                 card.classList.add(
@@ -212,14 +212,14 @@ function setupCategorySelection() {
 }
 
 // ==========================================
-// UPDATE REMINDER
+// UPDATE REMAINDER
 // ==========================================
 
 function setupFormSubmit() {
 
     const form =
         document.getElementById(
-            "editReminderForm"
+            "editRemainderForm"
         );
 
     form.addEventListener(
@@ -273,17 +273,17 @@ function setupFormSubmit() {
                 return;
             }
 
-            const reminders =
+            const remainders =
                 JSON.parse(
                     localStorage.getItem(
-                        "reminders"
+                        "remainders"
                     )
                 ) || [];
 
             const index =
-                reminders.findIndex(
+                remainders.findIndex(
                     item =>
-                    item.id === reminderId
+                    item.id === remainderId
                 );
 
             if (
@@ -291,15 +291,15 @@ function setupFormSubmit() {
             ) {
 
                 alert(
-                    "Reminder not found."
+                    "Remainder not found."
                 );
 
                 return;
             }
 
-            reminders[index] = {
+            remainders[index] = {
 
-                ...reminders[index],
+                ...remainders[index],
 
                 title,
                 description,
@@ -310,14 +310,14 @@ function setupFormSubmit() {
             };
 
             localStorage.setItem(
-                "reminders",
+                "remainders",
                 JSON.stringify(
-                    reminders
+                    remainders
                 )
             );
 
             showToast(
-                "Reminder Updated 🎉"
+                "Remainder Updated 🎉"
             );
 
             setTimeout(

@@ -2,9 +2,9 @@
 // ANALYTICS.JS
 // ==========================================
 
-let reminders =
+let remainders =
     JSON.parse(
-        localStorage.getItem("reminders")
+        localStorage.getItem("remainders")
     ) || [];
 
 let streakData =
@@ -42,18 +42,18 @@ document.addEventListener(
 function calculateAnalytics() {
 
     const total =
-        reminders.length;
+        remainders.length;
 
     const completed =
-        reminders.filter(
-            reminder =>
-                reminder.completed
+        remainders.filter(
+            remainder =>
+                remainder.completed
         ).length;
 
     const pending =
-        reminders.filter(
-            reminder =>
-                !reminder.completed
+        remainders.filter(
+            remainder =>
+                !remainder.completed
         ).length;
 
     const completionRate =
@@ -102,21 +102,21 @@ function calculateAnalytics() {
     // Priority Counts
 
     const high =
-        reminders.filter(
-            reminder =>
-                reminder.priority === "High"
+        remainders.filter(
+            remainder =>
+                remainder.priority === "High"
         ).length;
 
     const medium =
-        reminders.filter(
-            reminder =>
-                reminder.priority === "Medium"
+        remainders.filter(
+            remainder =>
+                remainder.priority === "Medium"
         ).length;
 
     const low =
-        reminders.filter(
-            reminder =>
-                reminder.priority === "Low"
+        remainders.filter(
+            remainder =>
+                remainder.priority === "Low"
         ).length;
 
     document.getElementById(
@@ -139,15 +139,15 @@ function calculateAnalytics() {
             .split("T")[0];
 
     const todayTasks =
-        reminders.filter(
-            reminder =>
-                reminder.date === today
+        remainders.filter(
+            remainder =>
+                remainder.date === today
         );
 
     const todayCompleted =
         todayTasks.filter(
-            reminder =>
-                reminder.completed
+            remainder =>
+                remainder.completed
         ).length;
 
     const todayRemaining =
@@ -192,13 +192,13 @@ function generateCharts() {
 function generateProductivityChart() {
 
     const completed =
-        reminders.filter(
-            reminder =>
-                reminder.completed
+        remainders.filter(
+            remainder =>
+                remainder.completed
         ).length;
 
     const pending =
-        reminders.length -
+        remainders.length -
         completed;
 
     new Chart(
@@ -254,27 +254,27 @@ function generateProductivityChart() {
 function generateStatusChart() {
 
     const completed =
-        reminders.filter(
-            reminder =>
-                reminder.completed
+        remainders.filter(
+            remainder =>
+                remainder.completed
         ).length;
 
     const pending =
-        reminders.filter(
-            reminder =>
-                !reminder.completed
+        remainders.filter(
+            remainder =>
+                !remainder.completed
         ).length;
 
     const overdue =
-        reminders.filter(
-            reminder => {
+        remainders.filter(
+            remainder => {
 
                 if (
-                    reminder.completed
+                    remainder.completed
                 ) return false;
 
                 return new Date(
-                    `${reminder.date}T${reminder.time}`
+                    `${remainder.date}T${remainder.time}`
                 ) < new Date();
             }
         ).length;
@@ -329,11 +329,11 @@ function generateCategoryChart() {
 
     const categories = {};
 
-    reminders.forEach(
-        reminder => {
+    remainders.forEach(
+        remainder => {
 
             const category =
-                reminder.category ||
+                remainder.category ||
                 "General";
 
             categories[category] =
@@ -399,16 +399,16 @@ function generateMonthlyChart() {
     const monthlyData =
         new Array(12).fill(0);
 
-    reminders.forEach(
-        reminder => {
+    remainders.forEach(
+        remainder => {
 
             if (
-                reminder.completed
+                remainder.completed
             ) {
 
                 const month =
                     new Date(
-                        reminder.date
+                        remainder.date
                     ).getMonth();
 
                 monthlyData[month]++;
@@ -471,12 +471,12 @@ function generateInsights() {
         );
 
     const total =
-        reminders.length;
+        remainders.length;
 
     const completed =
-        reminders.filter(
-            reminder =>
-                reminder.completed
+        remainders.filter(
+            remainder =>
+                remainder.completed
         ).length;
 
     const completionRate =
@@ -487,26 +487,26 @@ function generateInsights() {
             : 0;
 
     const overdue =
-        reminders.filter(
-            reminder => {
+        remainders.filter(
+            remainder => {
 
                 if (
-                    reminder.completed
+                    remainder.completed
                 ) return false;
 
                 return new Date(
-                    `${reminder.date}T${reminder.time}`
+                    `${remainder.date}T${remainder.time}`
                 ) < new Date();
             }
         ).length;
 
     const categories = {};
 
-    reminders.forEach(
-        reminder => {
+    remainders.forEach(
+        remainder => {
 
             const category =
-                reminder.category ||
+                remainder.category ||
                 "General";
 
             categories[category] =
@@ -539,11 +539,11 @@ function generateInsights() {
 
     const insights = [
 
-        `🔥 You have completed ${completionRate}% of your reminders.`,
+        `🔥 You have completed ${completionRate}% of your remainders.`,
 
         `📚 Your most active category is "${topCategory}".`,
 
-        `⚠ You currently have ${overdue} overdue reminders.`,
+        `⚠ You currently have ${overdue} overdue remainders.`,
 
         `🏆 Your current streak is ${streakData.streak || 0} days.`
 

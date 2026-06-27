@@ -1,5 +1,5 @@
 // ==========================================
-// ADD REMINDER JS
+// ADD REMAINDER JS
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -118,7 +118,7 @@ function setupFormSubmit() {
 
     const form =
         document.getElementById(
-            "reminderForm"
+            "remainderForm"
         );
 
     form.addEventListener(
@@ -172,14 +172,14 @@ function setupFormSubmit() {
                 return;
             }
 
-            const reminders =
+            const remainders =
                 JSON.parse(
                     localStorage.getItem(
-                        "reminders"
+                        "remainders"
                     )
                 ) || [];
 
-            const reminder = {
+            const remainder = {
 
                 id: Date.now(),
 
@@ -201,19 +201,19 @@ function setupFormSubmit() {
                     new Date().toISOString()
             };
 
-            reminders.push(
-                reminder
+            remainders.push(
+                remainder
             );
 
             localStorage.setItem(
-                "reminders",
+                "remainders",
                 JSON.stringify(
-                    reminders
+                    remainders
                 )
             );
 
             showToast(
-                "Reminder Created 🎉"
+                "Remainder Created 🎉"
             );
 
             setTimeout(

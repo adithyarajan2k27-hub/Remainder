@@ -263,10 +263,10 @@ function setupProfilePhoto() {
 
 function loadStatistics() {
 
-    const reminders =
+    const remainders =
         JSON.parse(
             localStorage.getItem(
-                "reminders"
+                "remainders"
             )
         ) || [];
 
@@ -281,26 +281,26 @@ function loadStatistics() {
         };
 
     const total =
-        reminders.length;
+        remainders.length;
 
     const completed =
-        reminders.filter(
-            reminder =>
-                reminder.completed
+        remainders.filter(
+            remainder =>
+                remainder.completed
         ).length;
 
     const overdue =
-        reminders.filter(
-            reminder => {
+        remainders.filter(
+            remainder => {
 
                 if (
-                    reminder.completed
+                    remainder.completed
                 )
                     return false;
 
                 return (
                     new Date(
-                        `${reminder.date}T${reminder.time}`
+                        `${remainder.date}T${remainder.time}`
                     ) <
                     new Date()
                 );
@@ -404,10 +404,10 @@ function updateProductivityLevel(
 
 function loadAchievements() {
 
-    const reminders =
+    const remainders =
         JSON.parse(
             localStorage.getItem(
-                "reminders"
+                "remainders"
             )
         ) || [];
 
@@ -421,9 +421,9 @@ function loadAchievements() {
         };
 
     const completed =
-        reminders.filter(
-            reminder =>
-                reminder.completed
+        remainders.filter(
+            remainder =>
+                remainder.completed
         ).length;
 
     const badges = [
@@ -498,10 +498,10 @@ function loadAchievements() {
 
 function loadRecentActivity() {
 
-    const reminders =
+    const remainders =
         JSON.parse(
             localStorage.getItem(
-                "reminders"
+                "remainders"
             )
         ) || [];
 
@@ -511,7 +511,7 @@ function loadRecentActivity() {
         );
 
     if (
-        reminders.length === 0
+        remainders.length === 0
     ) {
 
         container.innerHTML =
@@ -526,20 +526,20 @@ function loadRecentActivity() {
     }
 
     const recent =
-        reminders
+        remainders
             .slice(-5)
             .reverse();
 
     container.innerHTML =
         recent
             .map(
-                reminder =>
+                remainder =>
 
                     `
             <div class="activity-item">
 
                 ${
-                    reminder.completed
+                    remainder.completed
                         ? "✅ Completed"
                         : "📝 Added"
                 }
@@ -547,7 +547,7 @@ function loadRecentActivity() {
                 :
 
                 ${
-                    reminder.title
+                    remainder.title
                 }
 
             </div>
@@ -579,10 +579,10 @@ function setupExportData() {
                             )
                         ),
 
-                    reminders:
+                    remainders:
                         JSON.parse(
                             localStorage.getItem(
-                                "reminders"
+                                "remainders"
                             )
                         ),
 

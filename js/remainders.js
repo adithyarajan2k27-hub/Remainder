@@ -1,9 +1,9 @@
 // ==========================================
-// REMINDERS PAGE JS
+// REMAINDERS PAGE JS
 // ==========================================
 
-let reminders = [];
-let filteredReminders = [];
+let remainders = [];
+let filteredRemainders = [];
 
 // ==========================================
 // INIT
@@ -13,11 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadTheme();
 
-    loadReminders();
+    loadRemainders();
 
     updateStats();
 
-    renderReminders();
+    renderRemainders();
 
     setupSearch();
 
@@ -26,17 +26,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================
-// GET REMINDERS
+// GET REMAINDERS
 // ==========================================
 
-function loadReminders() {
+function loadRemainders() {
 
-    reminders =
+    remainders =
         JSON.parse(
-            localStorage.getItem("reminders")
+            localStorage.getItem("remainders")
         ) || [];
 
-    filteredReminders = [...reminders];
+    filteredRemainders = [...remainders];
 }
 
 // ==========================================
@@ -51,30 +51,30 @@ function updateStats() {
         .split("T")[0];
 
     const pending =
-        reminders.filter(
-            reminder => !reminder.completed
+        remainders.filter(
+            remainder => !remainder.completed
         ).length;
 
     const completed =
-        reminders.filter(
-            reminder => reminder.completed
+        remainders.filter(
+            remainder => remainder.completed
         ).length;
 
     const overdue =
-        reminders.filter(reminder => {
+        remainders.filter(remainder => {
 
-            if (reminder.completed)
+            if (remainder.completed)
                 return false;
 
             return new Date(
-                `${reminder.date}T${reminder.time}`
+                `${remainder.date}T${remainder.time}`
             ) < new Date();
 
         }).length;
 
     document.getElementById(
         "allCount"
-    ).innerText = reminders.length;
+    ).innerText = remainders.length;
 
     document.getElementById(
         "pendingCount"
@@ -93,16 +93,16 @@ function updateStats() {
 // RENDER
 // ==========================================
 
-function renderReminders() {
+function renderRemainders() {
 
     const container =
         document.getElementById(
-            "reminderContainer"
+            "remainderContainer"
         );
 
     container.innerHTML = "";
 
-    if (filteredReminders.length === 0) {
+    if (filteredRemainders.length === 0) {
 
         container.innerHTML = `
 
@@ -112,10 +112,10 @@ function renderReminders() {
 
                 <i class="bi bi-calendar-x"></i>
 
-                <h3>No Reminders Found</h3>
+                <h3>No Remainders Found</h3>
 
                 <p>
-                    Try changing filters or add a new reminder.
+                    Try changing filters or add a new remainder.
                 </p>
 
             </div>
@@ -127,25 +127,25 @@ function renderReminders() {
         return;
     }
 
-    filteredReminders.forEach(reminder => {
+    filteredRemainders.forEach(remainder => {
 
         const overdue =
-            !reminder.completed &&
+            !remainder.completed &&
             new Date(
-                `${reminder.date}T${reminder.time}`
+                `${remainder.date}T${remainder.time}`
             ) < new Date();
 
         let badgeClass = "low";
 
         if (
-            reminder.priority === "Medium"
+            remainder.priority === "Medium"
         ) {
 
             badgeClass = "medium";
         }
 
         if (
-            reminder.priority === "High"
+            remainder.priority === "High"
         ) {
 
             badgeClass = "high";
@@ -157,15 +157,15 @@ function renderReminders() {
 
         card.innerHTML = `
 
-        <div class="reminder-card">
+        <div class="remainder-card">
 
             <div class="card-header-top">
 
                 <div>
 
-                    <div class="reminder-title">
+                    <div class="remainder-title">
 
-                        ${reminder.title}
+                        ${remainder.title}
 
                     </div>
 
@@ -175,7 +175,7 @@ function renderReminders() {
 
                     <span class="priority-badge ${badgeClass}">
 
-                        ${reminder.priority}
+                        ${remainder.priority}
 
                     </span>
 
@@ -183,30 +183,30 @@ function renderReminders() {
 
             </div>
 
-            <div class="reminder-meta">
+            <div class="remainder-meta">
 
-                📅 ${reminder.date}
+                📅 ${remainder.date}
 
                 <br>
 
-                ⏰ ${reminder.time}
+                ⏰ ${remainder.time}
 
             </div>
 
             <div class="category-chip">
 
-                ${reminder.category || "General"}
+                ${remainder.category || "General"}
 
             </div>
 
-            <div class="reminder-description">
+            <div class="remainder-description">
 
-                ${reminder.description || "No description"}
+                ${remainder.description || "No description"}
 
             </div>
 
             ${
-                reminder.completed
+                remainder.completed
                 ? `
                 <div class="mt-3">
                     <span class="completed-badge">
@@ -232,11 +232,11 @@ function renderReminders() {
             <div class="card-actions">
 
                 ${
-                    !reminder.completed
+                    !remainder.completed
                     ? `
                     <button
                         class="action-btn complete-btn"
-                        onclick="completeReminder(${reminder.id})">
+                        onclick="completeRemainder(${remainder.id})">
 
                         ✓ Complete
 
@@ -247,7 +247,7 @@ function renderReminders() {
 
                 <button
                     class="action-btn edit-btn"
-                    onclick="editReminder(${reminder.id})">
+                    onclick="editRemainder(${remainder.id})">
 
                     ✏ Edit
 
@@ -255,7 +255,7 @@ function renderReminders() {
 
                 <button
                     class="action-btn delete-btn"
-                    onclick="deleteReminder(${reminder.id})">
+                    onclick="deleteRemainder(${remainder.id})">
 
                     🗑 Delete
 
@@ -325,18 +325,18 @@ function applyFilters() {
         .toISOString()
         .split("T")[0];
 
-    filteredReminders =
-        reminders.filter(reminder => {
+    filteredRemainders =
+        remainders.filter(remainder => {
 
             const matchSearch =
 
-                reminder.title
+                remainder.title
                     .toLowerCase()
                     .includes(search)
 
                 ||
 
-                (reminder.description || "")
+                (remainder.description || "")
                     .toLowerCase()
                     .includes(search);
 
@@ -346,29 +346,29 @@ function applyFilters() {
             switch(filter) {
 
                 case "pending":
-                    return !reminder.completed;
+                    return !remainder.completed;
 
                 case "completed":
-                    return reminder.completed;
+                    return remainder.completed;
 
                 case "today":
-                    return reminder.date === today;
+                    return remainder.date === today;
 
                 case "upcoming":
-                    return reminder.date > today;
+                    return remainder.date > today;
 
                 case "overdue":
-                    return !reminder.completed &&
-                        reminder.date < today;
+                    return !remainder.completed &&
+                        remainder.date < today;
 
                 case "high":
-                    return reminder.priority === "High";
+                    return remainder.priority === "High";
 
                 case "medium":
-                    return reminder.priority === "Medium";
+                    return remainder.priority === "Medium";
 
                 case "low":
-                    return reminder.priority === "Low";
+                    return remainder.priority === "Low";
 
                 default:
                     return true;
@@ -378,7 +378,7 @@ function applyFilters() {
 
     applySorting(sort);
 
-    renderReminders();
+    renderRemainders();
 }
 
 // ==========================================
@@ -387,7 +387,7 @@ function applyFilters() {
 
 function applySorting(sort) {
 
-    filteredReminders.sort((a,b)=>{
+    filteredRemainders.sort((a,b)=>{
 
         switch(sort){
 
@@ -442,27 +442,27 @@ function applySorting(sort) {
 // COMPLETE
 // ==========================================
 
-function completeReminder(id) {
+function completeRemainder(id) {
 
     const index =
-        reminders.findIndex(
-            reminder =>
-                reminder.id === id
+        remainders.findIndex(
+            remainder =>
+                remainder.id === id
         );
 
     if(index === -1)
         return;
 
-    reminders[index].completed = true;
+    remainders[index].completed = true;
 
-    reminders[index].completedDate =
+    remainders[index].completedDate =
         new Date()
         .toISOString()
         .split("T")[0];
 
     localStorage.setItem(
-        "reminders",
-        JSON.stringify(reminders)
+        "remainders",
+        JSON.stringify(remainders)
     );
 
     updateStreak();
@@ -474,25 +474,25 @@ function completeReminder(id) {
 // DELETE
 // ==========================================
 
-function deleteReminder(id) {
+function deleteRemainder(id) {
 
     if(
         !confirm(
-            "Delete this reminder?"
+            "Delete this remainder?"
         )
     ){
         return;
     }
 
-    reminders =
-        reminders.filter(
-            reminder =>
-                reminder.id !== id
+    remainders =
+        remainders.filter(
+            remainder =>
+                remainder.id !== id
         );
 
     localStorage.setItem(
-        "reminders",
-        JSON.stringify(reminders)
+        "remainders",
+        JSON.stringify(remainders)
     );
 
     refreshPage();
@@ -502,10 +502,10 @@ function deleteReminder(id) {
 // EDIT
 // ==========================================
 
-function editReminder(id) {
+function editRemainder(id) {
 
     window.location.href =
-        `edit_reminder.html?id=${id}`;
+        `edit_remainder.html?id=${id}`;
 }
 
 // ==========================================
@@ -590,7 +590,7 @@ function updateStreak() {
 
 function refreshPage() {
 
-    loadReminders();
+    loadRemainders();
 
     updateStats();
 

@@ -668,7 +668,7 @@ body.dark .form-control::placeholder{
 }
 
 body.dark .stat-row,
-body.dark .reminder-item{
+body.dark .remainder-item{
 
     background:
     rgba(236,72,153,.15);

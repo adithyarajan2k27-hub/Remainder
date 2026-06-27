@@ -5,9 +5,9 @@
 let currentDate = new Date();
 let selectedDate = null;
 
-let reminders =
+let remainders =
     JSON.parse(
-        localStorage.getItem("reminders")
+        localStorage.getItem("remainders")
     ) || [];
 
 let streakData =
@@ -88,10 +88,10 @@ function setupEvents() {
         );
 
     document
-        .getElementById("searchReminder")
+        .getElementById("searchRemainder")
         .addEventListener(
             "input",
-            searchReminders
+            searchRemainders
         );
 }
 
@@ -297,27 +297,27 @@ function getIndicators(date) {
 
     let html = "";
 
-    const dayReminders =
-        reminders.filter(
-            reminder =>
-                reminder.date === date
+    const dayRemainders =
+        remainders.filter(
+            remainder =>
+                remainder.date === date
         );
 
     if (
-        dayReminders.some(
-            reminder =>
-                !reminder.completed
+        dayRemainders.some(
+            remainder =>
+                !remainder.completed
         )
     ) {
 
         html +=
-            `<span class="dot dot-reminder"></span>`;
+            `<span class="dot dot-remainder"></span>`;
     }
 
     if (
-        dayReminders.some(
-            reminder =>
-                reminder.completed
+        dayRemainders.some(
+            remainder =>
+                remainder.completed
         )
     ) {
 
@@ -326,11 +326,11 @@ function getIndicators(date) {
     }
 
     if (
-        dayReminders.some(
-            reminder =>
-                !reminder.completed &&
+        dayRemainders.some(
+            remainder =>
+                !remainder.completed &&
                 new Date(
-                    `${reminder.date}T${reminder.time}`
+                    `${remainder.date}T${remainder.time}`
                 ) < new Date()
         )
     ) {
@@ -365,46 +365,46 @@ function showDateDetails(date) {
 
         `<strong>${date}</strong>`;
 
-    const dayReminders =
-        reminders.filter(
-            reminder =>
-                reminder.date === date
+    const dayRemainders =
+        remainders.filter(
+            remainder =>
+                remainder.date === date
         );
 
     const container =
         document.getElementById(
-            "dayReminders"
+            "dayRemainders"
         );
 
     if (
-        dayReminders.length === 0
+        dayRemainders.length === 0
     ) {
 
         container.innerHTML =
-            "<p>No reminders for this day.</p>";
+            "<p>No remainders for this day.</p>";
 
         return;
     }
 
     container.innerHTML =
-        dayReminders
+        dayRemainders
             .map(
-                reminder => `
+                remainder => `
 
-        <div class="reminder-item">
+        <div class="remainder-item">
 
             <h6>
-                ${reminder.title}
+                ${remainder.title}
             </h6>
 
             <small>
-                ⏰ ${reminder.time}
+                ⏰ ${remainder.time}
             </small>
 
             <br>
 
             <small>
-                ${reminder.priority}
+                ${remainder.priority}
             </small>
 
         </div>
@@ -426,22 +426,22 @@ function updateStatistics() {
         .split("T")[0];
 
     const todayTasks =
-        reminders.filter(
-            reminder =>
-                reminder.date === today
+        remainders.filter(
+            remainder =>
+                remainder.date === today
         ).length;
 
     const upcoming =
-        reminders.filter(
-            reminder =>
-                reminder.date > today &&
-                !reminder.completed
+        remainders.filter(
+            remainder =>
+                remainder.date > today &&
+                !remainder.completed
         ).length;
 
     const completed =
-        reminders.filter(
-            reminder =>
-                reminder.completed
+        remainders.filter(
+            remainder =>
+                remainder.completed
         ).length;
 
     document.getElementById(
@@ -469,21 +469,21 @@ function updateStatistics() {
 // SEARCH
 // ==========================================
 
-function searchReminders() {
+function searchRemainders() {
 
     const query =
         document
             .getElementById(
-                "searchReminder"
+                "searchRemainder"
             )
             .value
             .toLowerCase();
 
     const results =
-        reminders.filter(
-            reminder =>
+        remainders.filter(
+            remainder =>
 
-                reminder.title
+                remainder.title
                     .toLowerCase()
                     .includes(
                         query
@@ -492,7 +492,7 @@ function searchReminders() {
                 ||
 
                 (
-                    reminder.description || ""
+                    remainder.description || ""
                 )
                     .toLowerCase()
                     .includes(
@@ -502,7 +502,7 @@ function searchReminders() {
 
     const container =
         document.getElementById(
-            "dayReminders"
+            "dayRemainders"
         );
 
     if (
@@ -520,7 +520,7 @@ function searchReminders() {
     ) {
 
         container.innerHTML =
-            "<p>No matching reminders found.</p>";
+            "<p>No matching remainders found.</p>";
 
         return;
     }
@@ -528,22 +528,22 @@ function searchReminders() {
     container.innerHTML =
         results
             .map(
-                reminder => `
+                remainder => `
 
-        <div class="reminder-item">
+        <div class="remainder-item">
 
             <h6>
-                ${reminder.title}
+                ${remainder.title}
             </h6>
 
             <small>
-                📅 ${reminder.date}
+                📅 ${remainder.date}
             </small>
 
             <br>
 
             <small>
-                ⏰ ${reminder.time}
+                ⏰ ${remainder.time}
             </small>
 
         </div>

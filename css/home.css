@@ -311,10 +311,10 @@ body{
 }
 
 /* ==========================================
-   REMINDER SECTION
+   REMAINDER SECTION
 ========================================== */
 
-.reminder-section{
+.remainder-section{
 
     padding:25px;
 
@@ -377,10 +377,10 @@ body{
 }
 
 /* ==========================================
-   REMINDER CARD
+   REMAINDER CARD
 ========================================== */
 
-.reminder-card{
+.remainder-card{
 
     background:white;
 
@@ -396,7 +396,7 @@ body{
     transition:.3s;
 }
 
-.reminder-card:hover{
+.remainder-card:hover{
 
     transform:
     translateY(-4px);
@@ -413,7 +413,7 @@ body{
     gap:15px;
 }
 
-.reminder-title{
+.remainder-title{
 
     font-size:1.1rem;
 
@@ -422,7 +422,7 @@ body{
     margin-bottom:8px;
 }
 
-.reminder-meta{
+.remainder-meta{
 
     color:#6b7280;
 
@@ -634,10 +634,10 @@ body{
 }
 
 /* ==========================================
-   REMINDER DAY
+   REMAINDER DAY
 ========================================== */
 
-.reminder-day{
+.remainder-day{
 
     border:
     2px solid #ec4899;
@@ -721,7 +721,7 @@ body{
     background:#9333ea;
 }
 
-.reminder-dot{
+.remainder-dot{
 
     background:#ec4899;
 }
@@ -916,7 +916,7 @@ body.dark .theme-btn,
 body.dark .notify-btn,
 body.dark .profile-btn,
 body.dark .day,
-body.dark .reminder-card{
+body.dark .remainder-card{
 
     background:#232336;
 
@@ -926,7 +926,7 @@ body.dark .reminder-card{
 body.dark .hero-card p,
 body.dark .stats-card p,
 body.dark .section-header small,
-body.dark .reminder-meta,
+body.dark .remainder-meta,
 body.dark .weekdays{
 
     color:#cbd5e1;
@@ -989,7 +989,7 @@ body.dark .countdown{
         font-size:3rem;
     }
 
-    .reminder-section{
+    .remainder-section{
 
         min-height:auto;
     }

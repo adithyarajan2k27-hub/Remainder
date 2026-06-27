@@ -10,30 +10,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateStats();
     generateCalendar();
-    loadReminders();
+    loadRemainders();
 
 });
 
 // ==========================================
-// GET REMINDERS
+// GET REMAINDERS
 // ==========================================
 
-function getReminders() {
+function getRemainders() {
 
     return JSON.parse(
-        localStorage.getItem("reminders")
+        localStorage.getItem("remainders")
     ) || [];
 }
 
 // ==========================================
-// SAVE REMINDERS
+// SAVE REMAINDERS
 // ==========================================
 
-function saveReminders(reminders) {
+function saveRemainders(remainders) {
 
     localStorage.setItem(
-        "reminders",
-        JSON.stringify(reminders)
+        "remainders",
+        JSON.stringify(remainders)
     );
 }
 
@@ -135,8 +135,8 @@ function setGreeting() {
 
 function updateStats() {
 
-    const reminders =
-        getReminders();
+    const remainders =
+        getRemainders();
 
     const today =
         new Date()
@@ -144,23 +144,23 @@ function updateStats() {
         .split("T")[0];
 
     const todayTasks =
-        reminders.filter(
-            reminder =>
-                reminder.date === today &&
-                !reminder.completed
+        remainders.filter(
+            remainder =>
+                remainder.date === today &&
+                !remainder.completed
         ).length;
 
     const upcoming =
-        reminders.filter(
-            reminder =>
-                reminder.date > today &&
-                !reminder.completed
+        remainders.filter(
+            remainder =>
+                remainder.date > today &&
+                !remainder.completed
         ).length;
 
     const completed =
-        reminders.filter(
-            reminder =>
-                reminder.completed
+        remainders.filter(
+            remainder =>
+                remainder.completed
         ).length;
 
     const streakData =
@@ -192,7 +192,7 @@ function updateStats() {
     // Completion Rate
 
     const total =
-        reminders.length;
+        remainders.length;
 
     const completionRate =
         total === 0
@@ -211,13 +211,13 @@ function updateStats() {
 // TOP 5 DEADLINES
 // ==========================================
 
-function getUpcomingReminders() {
+function getUpcomingRemainders() {
 
-    return getReminders()
+    return getRemainders()
 
         .filter(
-            reminder =>
-                !reminder.completed
+            remainder =>
+                !remainder.completed
         )
 
         .sort((a, b) => {
@@ -239,31 +239,31 @@ function getUpcomingReminders() {
 }
 
 // ==========================================
-// LOAD REMINDERS
+// LOAD REMAINDERS
 // ==========================================
 
-function loadReminders() {
+function loadRemainders() {
 
-    const reminderList =
+    const remainderList =
         document.getElementById(
-            "reminderList"
+            "remainderList"
         );
 
-    reminderList.innerHTML = "";
+    remainderList.innerHTML = "";
 
-    const reminders =
-        getUpcomingReminders();
+    const remainders =
+        getUpcomingRemainders();
 
-    if (reminders.length === 0) {
+    if (remainders.length === 0) {
 
-        reminderList.innerHTML = `
+        remainderList.innerHTML = `
 
         <div class="empty-state">
 
             <i class="bi bi-calendar-heart"></i>
 
             <h4>
-                No Upcoming Reminders
+                No Upcoming Remainders
             </h4>
 
             <p>
@@ -277,19 +277,19 @@ function loadReminders() {
         return;
     }
 
-    reminders.forEach(reminder => {
+    remainders.forEach(remainder => {
 
         const card =
             document.createElement("div");
 
         card.classList.add(
-            "reminder-card"
+            "remainder-card"
         );
 
         const overdue =
             isOverdue(
-                reminder.date,
-                reminder.time
+                remainder.date,
+                remainder.time
             );
 
         card.innerHTML = `
@@ -298,17 +298,17 @@ function loadReminders() {
 
             <div>
 
-                <h5 class="reminder-title">
-                    ${reminder.title}
+                <h5 class="remainder-title">
+                    ${remainder.title}
                 </h5>
 
-                <div class="reminder-meta">
+                <div class="remainder-meta">
 
-                    📅 ${reminder.date}
+                    📅 ${remainder.date}
 
                     <br>
 
-                    ⏰ ${reminder.time}
+                    ⏰ ${remainder.time}
 
                 </div>
 
@@ -323,8 +323,8 @@ function loadReminders() {
                 <div class="countdown">
 
                     ⏳ ${getCountdown(
-                        reminder.date,
-                        reminder.time
+                        remainder.date,
+                        remainder.time
                     )}
 
                 </div>
@@ -333,14 +333,14 @@ function loadReminders() {
 
             <div class="priority-badge">
 
-                ${reminder.priority}
+                ${remainder.priority}
 
             </div>
 
         </div>
 
         <p class="mt-3">
-            ${reminder.description || ""}
+            ${remainder.description || ""}
         </p>
 
         <div class="task-actions">
@@ -348,11 +348,11 @@ function loadReminders() {
             <input
                 type="checkbox"
                 class="complete-checkbox"
-                data-id="${reminder.id}">
+                data-id="${remainder.id}">
 
             <button
                 class="edit-btn"
-                data-id="${reminder.id}">
+                data-id="${remainder.id}">
 
                 ✏️ Edit
 
@@ -360,7 +360,7 @@ function loadReminders() {
 
             <button
                 class="delete-btn"
-                data-id="${reminder.id}">
+                data-id="${remainder.id}">
 
                 🗑️ Delete
 
@@ -370,7 +370,7 @@ function loadReminders() {
 
         `;
 
-        reminderList.appendChild(card);
+        remainderList.appendChild(card);
 
     });
 
@@ -398,17 +398,17 @@ function addDeleteEvents() {
                             button.dataset.id
                         );
 
-                    let reminders =
-                        getReminders();
+                    let remainders =
+                        getRemainders();
 
-                    reminders =
-                        reminders.filter(
-                            reminder =>
-                                reminder.id !== id
+                    remainders =
+                        remainders.filter(
+                            remainder =>
+                                remainder.id !== id
                         );
 
-                    saveReminders(
-                        reminders
+                    saveRemainders(
+                        remainders
                     );
 
                     refreshDashboard();
@@ -438,27 +438,27 @@ function addCompleteEvents() {
                             box.dataset.id
                         );
 
-                    const reminders =
-                        getReminders();
+                    const remainders =
+                        getRemainders();
 
-                    const reminder =
-                        reminders.find(
+                    const remainder =
+                        remainders.find(
                             item =>
                                 item.id === id
                         );
 
-                    if (!reminder)
+                    if (!remainder)
                         return;
 
-                    reminder.completed = true;
+                    remainder.completed = true;
 
-                    reminder.completedDate =
+                    remainder.completedDate =
                         new Date()
                         .toISOString()
                         .split("T")[0];
 
-                    saveReminders(
-                        reminders
+                    saveRemainders(
+                        remainders
                     );
 
                     updateStreak();
@@ -487,7 +487,7 @@ function addEditEvents() {
                         button.dataset.id;
 
                     window.location.href =
-                        `edit_reminder.html?id=${id}`;
+                        `edit_remainder.html?id=${id}`;
                 }
             );
         });
@@ -634,13 +634,13 @@ function generateCalendar() {
             0
         ).getDate();
 
-    const reminders =
-        getReminders();
+    const remainders =
+        getRemainders();
 
-    const reminderDates =
-        reminders.map(
-            reminder =>
-                reminder.date
+    const remainderDates =
+        remainders.map(
+            remainder =>
+                remainder.date
         );
 
     const streakData =
@@ -684,13 +684,13 @@ function generateCalendar() {
             `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
         if (
-            reminderDates.includes(
+            remainderDates.includes(
                 dateString
             )
         ) {
 
             box.classList.add(
-                "reminder-day"
+                "remainder-day"
             );
         }
 
@@ -786,5 +786,5 @@ function refreshDashboard() {
 
     generateCalendar();
 
-    loadReminders();
+    loadRemainders();
 }

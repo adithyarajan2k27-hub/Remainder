@@ -928,3 +928,17 @@ body.dark .login-footer p{
         height:54px;
     }
 }
+
+/* ==========================================
+   REGISTER PAGE OVERRIDES
+========================================== */
+
+#registerForm .form-group{
+
+    margin-bottom:16px;
+}
+
+#registerForm .login-btn{
+
+    margin-top:10px;
+}
