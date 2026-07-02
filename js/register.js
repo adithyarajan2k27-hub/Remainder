@@ -210,13 +210,14 @@ function setupRegister(){
             const userExists =
                 users.find(
                     user =>
-                    user.email === email
+                        user.email === email ||
+                        user.username === username
                 );
 
             if(userExists){
 
                 showToast(
-                    "Email already registered",
+                    "Email or username already registered",
                     "error"
                 );
 
@@ -259,30 +260,26 @@ function setupRegister(){
             );
 
             localStorage.setItem(
-                "users",
-                JSON.stringify(
-                    users
-                )
-            );
+    "currentUser",
+    JSON.stringify(newUser)
+);
 
-            showToast(
-                "Account Created Successfully 🎉",
-                "success"
-            );
+showToast(
+    "Account Created Successfully 🎉",
+    "success"
+);
 
-            setTimeout(
-                () => {
+setTimeout(
+    () => {
 
-                    window.location.href =
-                        "login.html";
+        window.location.href =
+            "home.html";
 
-                },
-                1800
-            );
-
-        }
-    );
-
+    },
+    1800
+);
+}
+    )
 }
 
 /* ==========================================

@@ -165,49 +165,57 @@ function setupLogin(){
 
             }
 
-            const currentUser = {
+            const users =
+    JSON.parse(
+        localStorage.getItem(
+            "users"
+        )
+    ) || [];
 
-                name:
-                email.includes("@")
-                ? email.split("@")[0]
-                : email,
+const user =
+    users.find(
+        user =>
+            (
+                user.email.toLowerCase() === email.toLowerCase() ||
+                user.username.toLowerCase() === email.toLowerCase()
+            ) &&
+            user.password === password
+    );
 
-                email: email,
+if(!user){
 
-                loginTime:
-                new Date().toISOString()
-            };
+    showToast(
+        "Invalid Email or Password",
+        "error"
+    );
 
-            localStorage.setItem(
-                "currentUser",
-                JSON.stringify(
-                    currentUser
-                )
-            );
+    return;
+}
 
-            showToast(
-                "Login Successful 🎉",
-                "success"
-            );
+localStorage.setItem(
+    "currentUser",
+    JSON.stringify(user)
+);
 
-            setTimeout(
-                () => {
+showToast(
+    `Welcome ${user.name} 🎉`,
+    "success"
+);
 
-                    window.location.href =
-                        "home.html";
+setTimeout(
+    () => {
 
-                },
-                1500
-            );
+        window.location.href =
+            "home.html";
+
+    },
+    1500
+);
 
         }
     );
 
 }
-
-/* ==========================================
-   THEME
-========================================== */
 
 function applySavedTheme(){
 
@@ -222,7 +230,6 @@ function applySavedTheme(){
             "dark"
         );
     }
-
 }
 
 /* ==========================================
